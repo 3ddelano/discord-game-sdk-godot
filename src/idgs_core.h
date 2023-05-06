@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dgs_utils.h"
+#include "idgs_activity.h"
 #pragma pack(push, 8)
 #include "discord_game_sdk.h"
 #pragma pack(pop)

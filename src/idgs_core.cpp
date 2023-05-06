@@ -21,7 +21,7 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
     params.events = nullptr;
     params.event_data = this;
     // params.user_events = &UserManager::events_;
-    // params.activity_events = &ActivityManager::events_;
+    params.activity_events = &IDGSActivity::_events;
     // params.relationship_events = &RelationshipManager::events_;
     // params.lobby_events = &LobbyManager::events_;
     // params.network_events = &NetworkManager::events_;

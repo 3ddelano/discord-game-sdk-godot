@@ -108,16 +108,16 @@ class Activity:
 		Public = 1,
 	}
 
-	# enum ActivityActionType {
-	#     Join = 1,
-	#     Spectate,
-	# }
+	enum ActionType {
+		Join = 1,
+		Spectate,
+	}
 
-	# enum ActivityJoinRequestReply {
-	#     No,
-	#     Yes,
-	#     Ignore,
-	# }
+	enum JoinRequestReply {
+		No,
+		Yes,
+		Ignore,
+	}
 
 	class Activity extends BaseClass:
 		func _init(): super._init("Activity")
@@ -166,14 +166,15 @@ class Activity:
 	static func clear_activity() -> void:
 		IDGSActivity.clear_activity()
 
-	static func send_request_reply():
-		pass
+	static func send_request_reply(p_user_id: int, p_reply: JoinRequestReply) -> void:
+		IDGSActivity.send_request_reply(p_user_id, p_reply)
 
-	static func send_invite():
-		pass
+	static func send_invite(p_user_id: int, p_type: ActionType, p_content: String) -> void:
+		IDGSActivity.send_invite(p_user_id, p_type, p_content)
 
-	static func accept_invite ():
-		pass
+	static func accept_invite(p_user_id: int) -> void:
+		IDGSActivity.accept_invite(p_user_id)
+
 
 class User extends RefCounted:
 	var _iuser
