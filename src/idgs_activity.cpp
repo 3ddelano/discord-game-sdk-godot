@@ -2,16 +2,16 @@
 
 using namespace godot;
 
-#define DGS_CORE_BIND_METHOD(meth) ClassDB::bind_method(D_METHOD(#meth), &IDGSActivity::meth)
+#define DGS_ACTIVITY_BIND_METHOD(meth) ClassDB::bind_method(D_METHOD(#meth), &IDGSActivity::meth)
 
 void IDGSActivity::_bind_methods() {
-    DGS_CORE_BIND_METHOD(register_command);
-    DGS_CORE_BIND_METHOD(register_steam);
-    DGS_CORE_BIND_METHOD(update_activity);
-    DGS_CORE_BIND_METHOD(clear_activity);
-    DGS_CORE_BIND_METHOD(send_request_reply);
-    DGS_CORE_BIND_METHOD(send_invite);
-    DGS_CORE_BIND_METHOD(accept_invite);
+    DGS_ACTIVITY_BIND_METHOD(register_command);
+    DGS_ACTIVITY_BIND_METHOD(register_steam);
+    DGS_ACTIVITY_BIND_METHOD(update_activity);
+    DGS_ACTIVITY_BIND_METHOD(clear_activity);
+    DGS_ACTIVITY_BIND_METHOD(send_request_reply);
+    DGS_ACTIVITY_BIND_METHOD(send_invite);
+    DGS_ACTIVITY_BIND_METHOD(accept_invite);
 
     ADD_SIGNAL(MethodInfo("update_activity", PropertyInfo(Variant::INT, "result")));
     ADD_SIGNAL(MethodInfo("clear_activity", PropertyInfo(Variant::INT, "result")));

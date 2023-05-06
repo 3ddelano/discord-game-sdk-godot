@@ -35,9 +35,10 @@ func _input(event: InputEvent) -> void:
 func _on_tab_pressed():
 	print("Tab pressed")
 
-	print("----- Activity: register_command: ", DiscordSDK.Activity.register_command("https://google.com"))
-	print("----- Activity: register_steam: ", DiscordSDK.Activity.register_steam(12345))
-
+	# ----- Activity
+#	print("----- Activity: register_command: ", DiscordSDK.Activity.register_command("https://google.com"))
+#	print("----- Activity: register_steam: ", DiscordSDK.Activity.register_steam(12345))
+#
 	var activity = DiscordSDK.Activity.Activity.new()
 	activity.application_id = APPLICATION_ID
 	activity.state = "This is the state"
@@ -55,16 +56,27 @@ func _on_tab_pressed():
 	activity.secrets_spectate = "foobar spectateSecret"
 	activity.instance = true
 
-	# print(activity)
+	print(activity)
 	DiscordSDK.Activity.update_activity(activity)
 	print("----- Activity: update_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().update_activity))
 
-	await get_tree().create_timer(3).timeout
-	DiscordSDK.Activity.clear_activity()
-	print("----- Activity: clear_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().clear_activity))
+#	await get_tree().create_timer(3).timeout
+#	DiscordSDK.Activity.clear_activity()
+#	print("----- Activity: clear_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().clear_activity))
 
 
+	# ----- Overlay
+#	print("----- Overlay: is_enabled: ", DiscordSDK.Overlay.is_enabled())
+#	print("----- Overlay: is_locked: ", DiscordSDK.Overlay.is_locked())
 
+#	DiscordSDK.Overlay.open_activity_invite(DiscordSDK.Activity.ActionType.Join)
+#	print("---- Overlay: open_activity_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_activity_invite))
+
+#	DiscordSDK.Overlay.open_guild_invite("some code")
+#	print("---- Overlay: open_guild_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_guild_invite))
+
+#	DiscordSDK.Overlay.open_voice_settings()
+#	print("---- Overlay: open_voice_settings: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_voice_settings))
 
 
 

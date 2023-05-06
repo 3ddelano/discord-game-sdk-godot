@@ -176,6 +176,29 @@ class Activity:
 		IDGSActivity.accept_invite(p_user_id)
 
 
+class Overlay:
+	static func get_instance():
+		return IDGSOverlay
+
+	static func is_enabled() -> bool:
+		return IDGSOverlay.is_enabled()
+
+	static func is_locked() -> bool:
+		return IDGSOverlay.is_locked()
+
+	static func set_locked(p_locked: bool) -> void:
+		IDGSOverlay.set_locked(p_locked)
+
+	static func open_activity_invite(p_type: Activity.ActionType) -> void:
+		IDGSOverlay.open_activity_invite(p_type)
+
+	static func open_guild_invite(p_code: String) -> void:
+		IDGSOverlay.open_guild_invite(p_code)
+
+	static func open_voice_settings() -> void:
+		IDGSOverlay.open_voice_settings()
+
+
 class User extends RefCounted:
 	var _iuser
 

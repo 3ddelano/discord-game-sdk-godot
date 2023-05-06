@@ -49,7 +49,6 @@ class IDGSActivity : public RefCounted {
     static IDiscordActivityEvents _events;
 
    protected:
-    IDiscordCore* _core = nullptr;
     static void _bind_methods();
 };
 
