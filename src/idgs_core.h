@@ -2,6 +2,7 @@
 
 #include "dgs_utils.h"
 #include "idgs_activity.h"
+#include "idgs_user.h"
 #pragma pack(push, 8)
 #include "discord_game_sdk.h"
 #pragma pack(pop)

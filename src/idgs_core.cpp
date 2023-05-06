@@ -20,7 +20,7 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
     params.flags = p_flags;
     params.events = nullptr;
     params.event_data = this;
-    // params.user_events = &UserManager::events_;
+    params.user_events = &IDGSUser::_events;
     params.activity_events = &IDGSActivity::_events;
     // params.relationship_events = &RelationshipManager::events_;
     // params.lobby_events = &LobbyManager::events_;
@@ -34,6 +34,10 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
     if (res != DiscordResult_Ok || !_core) {
         UtilityFunctions::printerr("\nDGS Error: Got Result: ", static_cast<int>(res), "\n\tat: ", __func__, " (", __FILE__, ":", __LINE__, ") ", "\n ");
     }
+
+    // Loads the current user
+    get_user_manager();
+
     return static_cast<int>(res);
 }
 

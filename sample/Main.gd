@@ -16,6 +16,7 @@ func _ready() -> void:
 	if create_res != DiscordSDK.Result.Ok:
 		print("Failed to create DiscordGameSDK: Got result %s" % DiscordSDK.result_str(create_res))
 		return
+	DiscordSDK.User.get_instance().connect("current_user_update", Callable(self, "_on_current_user_update"))
 
 	Store.emit_signal("discord_create")
 
@@ -58,11 +59,11 @@ func _on_tab_pressed():
 
 	print(activity)
 	DiscordSDK.Activity.update_activity(activity)
-	print("----- Activity: update_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().update_activity))
+	print("----- Activity: update_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().update_activity_cb))
 
 #	await get_tree().create_timer(3).timeout
 #	DiscordSDK.Activity.clear_activity()
-#	print("----- Activity: clear_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().clear_activity))
+#	print("----- Activity: clear_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().clear_activity_cb))
 
 
 	# ----- Overlay
@@ -70,13 +71,27 @@ func _on_tab_pressed():
 #	print("----- Overlay: is_locked: ", DiscordSDK.Overlay.is_locked())
 
 #	DiscordSDK.Overlay.open_activity_invite(DiscordSDK.Activity.ActionType.Join)
-#	print("---- Overlay: open_activity_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_activity_invite))
+#	print("---- Overlay: open_activity_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_activity_invite_cb))
 
 #	DiscordSDK.Overlay.open_guild_invite("some code")
-#	print("---- Overlay: open_guild_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_guild_invite))
+#	print("---- Overlay: open_guild_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_guild_invite_cb))
 
 #	DiscordSDK.Overlay.open_voice_settings()
-#	print("---- Overlay: open_voice_settings: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_voice_settings))
+#	print("---- Overlay: open_voice_settings: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_voice_settings_cb))
+	DiscordSDK.User.get_user(321233875776962560)
+	print("----- User: get user id=321233875776962560", await DiscordSDK.User.get_instance().get_user_cb)
+
+	print("----- User: get_current_user_premium_type: ", DiscordSDK.User.get_current_user_premium_type())
+	print("----- User: current_user_has_flag: Partner=", DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.Partner))
+	print("----- User: current_user_has_flag: HypeSquadEvents=", DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadEvents))
+	print("----- User: current_user_has_flag: HypeSquadHouse1=", DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadHouse1))
+	print("----- User: current_user_has_flag: HypeSquadHouse2=", DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadHouse2))
+	print("----- User: current_user_has_flag: HypeSquadHouse3=", DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadHouse3))
+
+
+func _on_current_user_update():
+	# ----- User
+	print("----- User: get_current_user: ", DiscordSDK.User.get_current_user())
 
 
 

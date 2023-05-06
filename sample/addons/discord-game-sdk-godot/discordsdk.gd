@@ -54,20 +54,6 @@ enum Result {
 	DrawingInitFailed = 44,
 }
 
-enum UserFlag {
-	Partner = 2,
-	HypeSquadEvents = 4,
-	HypeSquadHouse1 = 64,
-	HypeSquadHouse2 = 128,
-	HypeSquadHouse3 = 256,
-}
-
-enum PremiumType {
-	None = 0,
-	Tier1 = 1,
-	Tier2 = 2,
-}
-
 
 class Core:
 	enum CreateFlags {
@@ -199,38 +185,35 @@ class Overlay:
 		IDGSOverlay.open_voice_settings()
 
 
-class User extends RefCounted:
-	var _iuser
+class User:
+	enum UserFlag {
+		Partner = 2,
+		HypeSquadEvents = 4,
+		HypeSquadHouse1 = 64,
+		HypeSquadHouse2 = 128,
+		HypeSquadHouse3 = 256,
+	}
 
-	func set_id(p_user_id: int) -> void:
-		_iuser.set_id(p_user_id)
+	enum PremiumType {
+		None = 0,
+		Tier1 = 1,
+		Tier2 = 2,
+	}
 
-	func get_id() -> int:
-		return _iuser.get_id()
+	static func get_instance():
+		return IDGSUser
 
-	func set_username(p_username: String) -> void:
-		_iuser.set_username(p_username)
+	static func get_current_user() -> Dictionary:
+		return IDGSUser.get_current_user()
 
-	func get_username() -> String:
-		return _iuser.get_username()
+	static func get_user(p_user_id: int) -> void:
+		IDGSUser.get_user(p_user_id)
 
-	func set_discriminator(p_discriminator: String) -> void:
-		_iuser.set_discriminator(p_discriminator)
+	static func get_current_user_premium_type() -> Dictionary:
+		return IDGSUser.get_current_user_premium_type()
 
-	func get_discriminator() -> String:
-		return _iuser.get_discriminator()
-
-	func set_avatar(p_avatar: String) -> void:
-		_iuser.set_avatar(p_avatar)
-
-	func get_avatar() -> String:
-		return _iuser.get_avatar()
-
-	func set_bot(p_bot: bool) -> void:
-		_iuser.set_bot(p_bot)
-
-	func get_bot() -> bool:
-		return _iuser.get_bot()
+	static func current_user_has_flag(p_flag: UserFlag) -> Dictionary:
+		return IDGSUser.current_user_has_flag(p_flag)
 
 
 static func print_result(p_result: int) -> void:

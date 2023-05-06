@@ -13,11 +13,11 @@ void IDGSActivity::_bind_methods() {
     DGS_ACTIVITY_BIND_METHOD(send_invite);
     DGS_ACTIVITY_BIND_METHOD(accept_invite);
 
-    ADD_SIGNAL(MethodInfo("update_activity", PropertyInfo(Variant::INT, "result")));
-    ADD_SIGNAL(MethodInfo("clear_activity", PropertyInfo(Variant::INT, "result")));
-    ADD_SIGNAL(MethodInfo("send_request_reply", PropertyInfo(Variant::INT, "result")));
-    ADD_SIGNAL(MethodInfo("send_invite", PropertyInfo(Variant::INT, "result")));
-    ADD_SIGNAL(MethodInfo("accept_invite", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("update_activity_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("clear_activity_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("send_request_reply_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("send_invite_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("accept_invite_cb", PropertyInfo(Variant::INT, "result")));
 
     ADD_SIGNAL(MethodInfo("join", PropertyInfo(Variant::STRING, "join_secret")));
     ADD_SIGNAL(MethodInfo("spectate", PropertyInfo(Variant::STRING, "spectate_secret")));
@@ -140,7 +140,7 @@ void IDGSActivity::update_activity(Ref<RefCounted> p_activity) {
     activity.instance = instance;
 
     activity_manager->update_activity(activity_manager, &activity, nullptr, [](void* data, EDiscordResult result) {
-        IDGSActivity::get_singleton()->emit_signal("update_activity", static_cast<int>(result));
+        IDGSActivity::get_singleton()->emit_signal("update_activity_cb", static_cast<int>(result));
     });
 
     return;
@@ -151,7 +151,7 @@ void IDGSActivity::clear_activity() {
     ERR_FAIL_COND(activity_manager == nullptr);
 
     activity_manager->clear_activity(activity_manager, nullptr, [](void* data, EDiscordResult result) {
-        IDGSActivity::get_singleton()->emit_signal("clear_activity", static_cast<int>(result));
+        IDGSActivity::get_singleton()->emit_signal("clear_activity_cb", static_cast<int>(result));
     });
 }
 
@@ -160,7 +160,7 @@ void IDGSActivity::send_request_reply(int64_t p_user_id, int p_reply) {
     ERR_FAIL_COND(activity_manager == nullptr);
 
     activity_manager->send_request_reply(activity_manager, p_user_id, static_cast<EDiscordActivityJoinRequestReply>(p_reply), nullptr, [](void* data, EDiscordResult result) {
-        IDGSActivity::get_singleton()->emit_signal("send_request_reply", static_cast<int>(result));
+        IDGSActivity::get_singleton()->emit_signal("send_request_reply_cb", static_cast<int>(result));
     });
 }
 
@@ -170,7 +170,7 @@ void IDGSActivity::send_invite(int64_t p_user_id, int p_type, const String& p_co
 
     CharString content = p_content.utf8();
     activity_manager->send_invite(activity_manager, p_user_id, static_cast<EDiscordActivityActionType>(p_type), content.get_data(), nullptr, [](void* data, EDiscordResult result) {
-        IDGSActivity::get_singleton()->emit_signal("send_invite", static_cast<int>(result));
+        IDGSActivity::get_singleton()->emit_signal("send_invite_cb", static_cast<int>(result));
     });
 }
 
@@ -179,7 +179,7 @@ void IDGSActivity::accept_invite(int64_t user_id) {
     ERR_FAIL_COND(activity_manager == nullptr);
 
     activity_manager->accept_invite(activity_manager, user_id, nullptr, [](void* data, EDiscordResult result) {
-        IDGSActivity::get_singleton()->emit_signal("accept_invite", static_cast<int>(result));
+        IDGSActivity::get_singleton()->emit_signal("accept_invite_cb", static_cast<int>(result));
     });
 }
 

@@ -5,12 +5,14 @@
 #include "idgs_activity.h"
 #include "idgs_core.h"
 #include "idgs_overlay.h"
+#include "idgs_user.h"
 
 using namespace godot;
 
 static IDGSCore *_idgsCore;
 static IDGSActivity *_idgsActivity;
 static IDGSOverlay *_idgsOverlay;
+static IDGSUser *_idgsUser;
 
 void initialize_dgs_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
@@ -28,6 +30,10 @@ void initialize_dgs_module(ModuleInitializationLevel p_level) {
     ClassDB::register_class<IDGSOverlay>();
     _idgsOverlay = memnew(IDGSOverlay);
     Engine::get_singleton()->register_singleton("IDGSOverlay", IDGSOverlay::get_singleton());
+
+    ClassDB::register_class<IDGSUser>();
+    _idgsUser = memnew(IDGSUser);
+    Engine::get_singleton()->register_singleton("IDGSUser", IDGSUser::get_singleton());
 }
 
 void uninitialize_dgs_module(ModuleInitializationLevel p_level) {
@@ -43,6 +49,9 @@ void uninitialize_dgs_module(ModuleInitializationLevel p_level) {
 
     Engine::get_singleton()->unregister_singleton("IDGSOverlay");
     memdelete(_idgsOverlay);
+
+    Engine::get_singleton()->unregister_singleton("IDGSUser");
+    memdelete(_idgsUser);
 }
 
 extern "C" {

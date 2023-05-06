@@ -12,10 +12,10 @@ void IDGSOverlay::_bind_methods() {
     DGS_OVERLAY_BIND_METHOD(open_guild_invite);
     DGS_OVERLAY_BIND_METHOD(open_voice_settings);
 
-    ADD_SIGNAL(MethodInfo("set_locked", PropertyInfo(Variant::BOOL, "result")));
-    ADD_SIGNAL(MethodInfo("open_activity_invite", PropertyInfo(Variant::BOOL, "result")));
-    ADD_SIGNAL(MethodInfo("open_guild_invite", PropertyInfo(Variant::BOOL, "result")));
-    ADD_SIGNAL(MethodInfo("open_voice_settings", PropertyInfo(Variant::BOOL, "result")));
+    ADD_SIGNAL(MethodInfo("set_locked_cb", PropertyInfo(Variant::BOOL, "result")));
+    ADD_SIGNAL(MethodInfo("open_activity_invite_cb", PropertyInfo(Variant::BOOL, "result")));
+    ADD_SIGNAL(MethodInfo("open_guild_invite_cb", PropertyInfo(Variant::BOOL, "result")));
+    ADD_SIGNAL(MethodInfo("open_voice_settings_cb", PropertyInfo(Variant::BOOL, "result")));
 
     ADD_SIGNAL(MethodInfo("toggle", PropertyInfo(Variant::BOOL, "locked")));
 }
@@ -40,7 +40,7 @@ void IDGSOverlay::set_locked(bool p_locked) {
     IDiscordOverlayManager* overlayManager = IDGSCore::get_overlay_manager();
     ERR_FAIL_COND(overlayManager == nullptr);
     overlayManager->set_locked(overlayManager, p_locked, nullptr, [](void* data, EDiscordResult result) {
-        IDGSOverlay::get_singleton()->emit_signal("set_locked", static_cast<int>(result));
+        IDGSOverlay::get_singleton()->emit_signal("set_locked_cb", static_cast<int>(result));
     });
 }
 
@@ -48,7 +48,7 @@ void IDGSOverlay::open_activity_invite(int p_type) {
     IDiscordOverlayManager* overlayManager = IDGSCore::get_overlay_manager();
     ERR_FAIL_COND(overlayManager == nullptr);
     overlayManager->open_activity_invite(overlayManager, static_cast<EDiscordActivityActionType>(p_type), nullptr, [](void* data, EDiscordResult result) {
-        IDGSOverlay::get_singleton()->emit_signal("open_activity_invite", static_cast<int>(result));
+        IDGSOverlay::get_singleton()->emit_signal("open_activity_invite_cb", static_cast<int>(result));
     });
 }
 
@@ -56,7 +56,7 @@ void IDGSOverlay::open_guild_invite(const String& p_code) {
     IDiscordOverlayManager* overlayManager = IDGSCore::get_overlay_manager();
     ERR_FAIL_COND(overlayManager == nullptr);
     overlayManager->open_guild_invite(overlayManager, p_code.utf8().get_data(), nullptr, [](void* data, EDiscordResult result) {
-        IDGSOverlay::get_singleton()->emit_signal("open_guild_invite", static_cast<int>(result));
+        IDGSOverlay::get_singleton()->emit_signal("open_guild_invite_cb", static_cast<int>(result));
     });
 }
 
@@ -64,7 +64,7 @@ void IDGSOverlay::open_voice_settings() {
     IDiscordOverlayManager* overlayManager = IDGSCore::get_overlay_manager();
     ERR_FAIL_COND(overlayManager == nullptr);
     overlayManager->open_voice_settings(overlayManager, nullptr, [](void* data, EDiscordResult result) {
-        IDGSOverlay::get_singleton()->emit_signal("open_voice_settings", static_cast<int>(result));
+        IDGSOverlay::get_singleton()->emit_signal("open_voice_settings_cb", static_cast<int>(result));
     });
 }
 
