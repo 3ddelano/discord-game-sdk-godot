@@ -1,0 +1,8 @@
+# Godot logs
+logs/
+
+.env
+vc140.pdb
+.sconsign.dblite
+
+*.obj
