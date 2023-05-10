@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://citje3bq1h0jh"]
+[gd_scene load_steps=5 format=3 uid="uid://citje3bq1h0jh"]
 
 [ext_resource type="Script" path="res://scenes/OverlayView/OverlayView.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_hp6xm"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5l1q"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.192157, 0.2, 0.219608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="OverlayView" type="VBoxContainer"]
 anchors_preset = 15
@@ -19,28 +30,82 @@ theme_override_fonts/font = ExtResource("2_hp6xm")
 theme_override_font_sizes/font_size = 32
 text = "Overlay"
 
-[node name="VB" type="VBoxContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5l1q")
+
+[node name="Sections" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="IsEnabledLabel" type="Label" parent="Panel/Sections"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Is enabled? Loading..."
+
+[node name="IsLockedLabel" type="Label" parent="Panel/Sections"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Is locked? Loading..."
+
+[node name="SetLocked" type="HBoxContainer" parent="Panel/Sections"]
 layout_mode = 2
 
-[node name="IsEnabledLabel" type="Label" parent="VB"]
+[node name="LockedCheckBox" type="CheckBox" parent="Panel/Sections/SetLocked"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Is enabled? -"
+text = "Locked"
 
-[node name="IsLockedLabel" type="Label" parent="VB"]
+[node name="SetLockedBtn" parent="Panel/Sections/SetLocked" instance=ExtResource("5")]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Is locked? -"
+size_flags_horizontal = 0
+text = "Set Locked"
 
-[node name="OpenActivityInviteBtn" parent="VB" instance=ExtResource("5")]
+[node name="ActivityInvite" type="HBoxContainer" parent="Panel/Sections"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Sections/ActivityInvite"]
+layout_mode = 2
+text = "Activty Action Type"
+
+[node name="ActivityActionTypeOptionButton" type="OptionButton" parent="Panel/Sections/ActivityInvite"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Join"
+popup/item_0/id = 1
+popup/item_1/text = "Spectate"
+popup/item_1/id = 2
+
+[node name="OpenActivityInviteBtn" parent="Panel/Sections/ActivityInvite" instance=ExtResource("5")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Open Activity Invite"
 
-[node name="OpenGuildInviteBtn" parent="VB" instance=ExtResource("5")]
+[node name="GuildInvite" type="HBoxContainer" parent="Panel/Sections"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Sections/GuildInvite"]
+layout_mode = 2
+text = "Invite Code"
+
+[node name="GuildInviteCodeLineEdit" type="LineEdit" parent="Panel/Sections/GuildInvite"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="OpenGuildInviteBtn" parent="Panel/Sections/GuildInvite" instance=ExtResource("5")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Open Guild Invite"
 
-[node name="OpenVoiceSettingsBtn" parent="VB" instance=ExtResource("5")]
+[node name="OpenVoiceSettingsBtn" parent="Panel/Sections" instance=ExtResource("5")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Open Voice Settings"

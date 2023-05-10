@@ -6,7 +6,7 @@ extends PanelContainer
 
 func _on_btn_pressed():
 	var cmd = _cmd_lineedit.text
-	if cmd == "":
+	if cmd.is_empty():
 		return
 
 	var res = DiscordSDK.Activity.register_command(cmd)

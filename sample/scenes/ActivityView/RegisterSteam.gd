@@ -6,7 +6,7 @@ extends PanelContainer
 
 func _on_btn_pressed():
 	var steam_id = _steamid_lineedit.text
-	if steam_id == "":
+	if steam_id.is_empty():
 		return
 
 	var res = DiscordSDK.Activity.register_steam(int(steam_id))

@@ -40,4 +40,5 @@ theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
 text = "DiscordSDK Logs
 "
+scroll_following = true
 selection_enabled = true

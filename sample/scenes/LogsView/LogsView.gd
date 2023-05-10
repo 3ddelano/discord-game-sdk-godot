@@ -32,7 +32,7 @@ func log_msg(level: DiscordSDK.Core.LogLevel, msg: String):
 
 
 	var darkened_color = Color(color).darkened(0.2).to_html(true)
-	var richtext = "[color=#%s]%s | [/color][color=%s]%s\n[/color]" % [darkened_color, level_str, color, msg]
+	var richtext = "[color=#%s]%s | [/color][color=%s]%s[/color]\n" % [darkened_color, level_str, color, msg]
 
 	print_rich(richtext)
 

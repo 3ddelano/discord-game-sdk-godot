@@ -1,13 +1,18 @@
 extends Control
 
-@onready var CLIENT_ID := int(Env.get_var("CLIENT_ID")) # Paste your own here
-@onready var APPLICATION_ID := int(Env.get_var("APPLICATION_ID")) # Paste your own here
+@onready var CLIENT_ID := int(Env.get_var("CLIENT_ID", 0)) # Paste your own here
+@onready var APPLICATION_ID := int(Env.get_var("APPLICATION_ID", 0)) # Paste your own here
 
 @export var _views_path: NodePath
 @onready var views = get_node(_views_path) as VBoxContainer
 
 
 func _ready() -> void:
+	if CLIENT_ID == 0:
+		Store.log_msg(DiscordSDK.Core.LogLevel.Error, "CLIENT_ID is not set")
+	if APPLICATION_ID == 0:
+		Store.log_msg(DiscordSDK.Core.LogLevel.Error, "APPLICATION_ID is not set")
+
 	print("Ready!")
 	Store._main_node = self
 

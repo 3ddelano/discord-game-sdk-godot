@@ -23,7 +23,7 @@ var _state: States = States.Default
 
 func _on_getuser_btn_pressed():
 	var user_id = _id_lineedit.text
-	if user_id == "":
+	if user_id.is_empty():
 		return
 
 	set_state(States.Loading)
