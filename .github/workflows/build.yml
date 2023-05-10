@@ -46,7 +46,21 @@ jobs:
             - name: Checkout project
               uses: actions/checkout@v3
               with:
-                  submodules: recursive
+                  submodules: false
+
+            - name: Checkout godot-cpp
+              uses: actions/checkout@v3
+              with:
+                  repository: godotengine/godot-cpp
+                  path: godot-cpp
+
+            - name: Checkout Discord GameSDK mirror repo
+              uses: actions/checkout@v3
+              with:
+                  token: "${{secrets.DISCORD_SDK_MIRROR_PAT}}"
+                  repository: 3ddelano/discord_game_sdk_mirror
+                  path: thirdparty/discord_game_sdk
+                  ref: "main"
 
             - name: (Windows) Install mingw64
               if: ${{ matrix.platform == 'windows' }}
