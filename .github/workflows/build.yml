@@ -53,8 +53,9 @@ jobs:
               with:
                   repository: godotengine/godot-cpp
                   path: godot-cpp
+                  submodules: recursive
 
-            - name: Checkout Discord GameSDK mirror repo
+            - name: Checkout private Discord GameSDK mirror repo
               uses: actions/checkout@v3
               with:
                   token: "${{secrets.DISCORD_SDK_MIRROR_PAT}}"
@@ -64,7 +65,12 @@ jobs:
 
             - name: (Windows) Install mingw64
               if: ${{ matrix.platform == 'windows' }}
-              uses: egor-tensin/setup-mingw@v2
+              #   uses: egor-tensin/setup-mingw@v2
+              shell: sh
+              run: |
+                  sudo apt-get install mingw-w64
+                  sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+                  sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
 
             - name: (Linux) Install dependencies
               if: ${{ matrix.platform == 'linux' }}
@@ -107,6 +113,7 @@ jobs:
                   filename: "discord_game_sdk_godot.${{ matrix.platform }}.${{ matrix.arch }}.zip"
                   path: "${{ github.workspace }}/sample/addons/discord-game-sdk-godot/bin/"
                   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+
             - name: Create and upload asset
               uses: ncipollo/release-action@v1
               with:
@@ -115,4 +122,3 @@ jobs:
                   omitNameDuringUpdate: true
                   omitBodyDuringUpdate: true
                   token: ${{ secrets.GITHUB_TOKEN }}
-                  if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
