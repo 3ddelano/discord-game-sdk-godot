@@ -1,18 +1,48 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4qhu1rqw2dp2"]
+[gd_scene load_steps=14 format=3 uid="uid://c7i5mvhud882g"]
 
-[ext_resource type="FontFile" path="res://fonts/roboto-16r.tres" id="1_j7moy"]
-[ext_resource type="PackedScene" uid="uid://baqsroekimrce" path="res://scenes/ActivityView/ActivityView.tscn" id="2"]
+[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_6ynui"]
+[ext_resource type="PackedScene" uid="uid://c7a4wvc65f57" path="res://scenes/ActivityView/ActivityView.tscn" id="2"]
 [ext_resource type="Script" path="res://Main.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/ViewManager.gd" id="3_j157n"]
 [ext_resource type="PackedScene" uid="uid://cl2qvlvdhn2iw" path="res://scenes/LogsView/LogsView.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://dqyyh7wsttxr2" path="res://scenes/UserView/UserView.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://scenes/UI/PrimaryButton.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://c380stcei1ept" path="res://scenes/OverlayView/OverlayView.tscn" id="9"]
-[ext_resource type="PackedScene" path="res://scenes/RelationshipsView/RelationshipsView.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://rjivhq2c1j1w" path="res://scenes/UserView/UserView.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://citje3bq1h0jh" path="res://scenes/OverlayView/OverlayView.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://bmd75bv6ub6o6" path="res://scenes/RelationshipsView/RelationshipsView.tscn" id="11"]
 [ext_resource type="Script" path="res://scenes/NotificationsView/NotificationsView.gd" id="14_v0jrb"]
 
+[sub_resource type="FontFile" id="FontFile_y1yfp"]
+fallbacks = Array[Font]([ExtResource("1_6ynui")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/10/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/12/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/12/0 = Vector2(0, 0)
+
 [sub_resource type="Theme" id="4"]
-default_font = ExtResource("1_j7moy")
+default_font = SubResource("FontFile_y1yfp")
 
 [sub_resource type="StyleBoxEmpty" id="5"]
 
@@ -31,7 +61,7 @@ _views_path = NodePath("MC/ViewManager")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.121569, 0.121569, 0.121569, 1)
+color = Color(0.117647, 0.121569, 0.133333, 1)
 
 [node name="MC" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -51,18 +81,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="UserBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "User"
 
 [node name="ActivityBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Activity"
 
 [node name="OverlayBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Overlay"
 
 [node name="RelationshipsBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Relationships"
 
@@ -71,50 +105,55 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/autohide = 0
+split_offset = 197
 
-[node name="VB" type="VBoxContainer" parent="MC/ViewManager/VSC"]
+[node name="SC" type="ScrollContainer" parent="MC/ViewManager/VSC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VB" type="VBoxContainer" parent="MC/ViewManager/VSC/SC"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_constants/separation = 52
 
-[node name="UserView" parent="MC/ViewManager/VSC/VB" instance=ExtResource("5")]
+[node name="UserView" parent="MC/ViewManager/VSC/SC/VB" instance=ExtResource("5")]
 visible = false
 layout_mode = 2
 
-[node name="ActivityView" parent="MC/ViewManager/VSC/VB" instance=ExtResource("2")]
+[node name="ActivityView" parent="MC/ViewManager/VSC/SC/VB" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="OverlayView" parent="MC/ViewManager/VSC/SC/VB" instance=ExtResource("9")]
 visible = false
 layout_mode = 2
 
-[node name="OverlayView" parent="MC/ViewManager/VSC/VB" instance=ExtResource("9")]
+[node name="RelationshipsView" parent="MC/ViewManager/VSC/SC/VB" instance=ExtResource("11")]
 visible = false
 layout_mode = 2
 
-[node name="RelationshipsView" parent="MC/ViewManager/VSC/VB" instance=ExtResource("11")]
-visible = false
-layout_mode = 2
+[node name="NotificationsLayer" type="CanvasLayer" parent="MC/ViewManager/VSC/SC/VB"]
 
-[node name="NotificationsLayer" type="CanvasLayer" parent="MC/ViewManager/VSC/VB"]
-
-[node name="NotificationsView" type="MarginContainer" parent="MC/ViewManager/VSC/VB/NotificationsLayer"]
+[node name="NotificationsView" type="MarginContainer" parent="MC/ViewManager/VSC/SC/VB/NotificationsLayer"]
+unique_name_in_owner = true
 offset_top = 270.0
 offset_right = 366.0
 offset_bottom = 600.0
 mouse_filter = 2
 script = ExtResource("14_v0jrb")
 
-[node name="SC" type="ScrollContainer" parent="MC/ViewManager/VSC/VB/NotificationsLayer/NotificationsView"]
+[node name="SC" type="ScrollContainer" parent="MC/ViewManager/VSC/SC/VB/NotificationsLayer/NotificationsView"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PC" type="PanelContainer" parent="MC/ViewManager/VSC/VB/NotificationsLayer/NotificationsView/SC"]
+[node name="PC" type="PanelContainer" parent="MC/ViewManager/VSC/SC/VB/NotificationsLayer/NotificationsView/SC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
 mouse_filter = 2
 theme_override_styles/panel = SubResource("5")
 
-[node name="MC" type="MarginContainer" parent="MC/ViewManager/VSC/VB/NotificationsLayer/NotificationsView/SC/PC"]
+[node name="MC" type="MarginContainer" parent="MC/ViewManager/VSC/SC/VB/NotificationsLayer/NotificationsView/SC/PC"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
@@ -122,10 +161,11 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 8
 
-[node name="VB" type="VBoxContainer" parent="MC/ViewManager/VSC/VB/NotificationsLayer/NotificationsView/SC/PC/MC"]
+[node name="VB" type="VBoxContainer" parent="MC/ViewManager/VSC/SC/VB/NotificationsLayer/NotificationsView/SC/PC/MC"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="LogsView" parent="MC/ViewManager/VSC" instance=ExtResource("4")]
+unique_name_in_owner = true
 layout_mode = 2

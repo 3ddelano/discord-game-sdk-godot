@@ -28,11 +28,11 @@ class IDGSActivity : public RefCounted {
     void accept_invite(int64_t user_id);
 
     static void on_activity_join(void* data, const char* join_secret) {
-        IDGSActivity::get_singleton()->emit_signal("join", join_secret);
+        IDGSActivity::get_singleton()->emit_signal("join", String(join_secret));
     };
 
     static void on_activity_spectate(void* data, const char* spectate_secret) {
-        IDGSActivity::get_singleton()->emit_signal("spectate", spectate_secret);
+        IDGSActivity::get_singleton()->emit_signal("spectate", String(spectate_secret));
     };
 
     static void on_activity_join_request(void* data, DiscordUser* user) {

@@ -17,21 +17,15 @@ void IDGSUser::_bind_methods() {
 Dictionary IDGSUser::get_current_user() {
     IDiscordUserManager* userManager = IDGSCore::get_user_manager();
     Dictionary ret;
-    ret["result"] = -1;
+    ret["result"] = DiscordResult_InternalError;
     ret["user"] = Variant();
     ERR_FAIL_COND_V(userManager == nullptr, ret);
 
-    DiscordUser* current_user = (DiscordUser*)memalloc(sizeof(DiscordUser));
-    EDiscordResult res = userManager->get_current_user(userManager, current_user);
+    DiscordUser current_user{};
+    EDiscordResult res = userManager->get_current_user(userManager, &current_user);
 
     ret["result"] = static_cast<int>(res);
-    if (current_user != nullptr) {
-        ret["user"] = dgs_discord_user_to_dict(current_user);
-    } else {
-        ret["user"] = Variant();
-    }
-    memdelete(current_user);
-
+    ret["user"] = dgs_discord_user_to_dict(&current_user);
     return ret;
 }
 
@@ -42,12 +36,7 @@ void IDGSUser::get_user(int64_t user_id) {
     userManager->get_user(userManager, user_id, nullptr, [](void* data, EDiscordResult result, DiscordUser* user) {
         Dictionary ret;
         ret["result"] = static_cast<int>(result);
-        if (user != nullptr) {
-            ret["user"] = dgs_discord_user_to_dict(user);
-        } else {
-            ret["user"] = Variant();
-        }
-
+        ret["user"] = dgs_discord_user_to_dict(user);
         IDGSUser::get_singleton()->emit_signal("get_user_cb", ret);
     });
 }
@@ -55,20 +44,15 @@ void IDGSUser::get_user(int64_t user_id) {
 Dictionary IDGSUser::get_current_user_premium_type() {
     IDiscordUserManager* userManager = IDGSCore::get_user_manager();
     Dictionary ret;
-    ret["result"] = -1;
-    ret["usr"] = Variant();
+    ret["result"] = DiscordResult_InternalError;
+    ret["premium_type"] = 0;
     ERR_FAIL_COND_V(userManager == nullptr, ret);
 
-    EDiscordPremiumType* premium_type = (EDiscordPremiumType*)memalloc(sizeof(EDiscordPremiumType));
-    EDiscordResult res = userManager->get_current_user_premium_type(userManager, premium_type);
+    EDiscordPremiumType premium_type = DiscordPremiumType_None;
+    EDiscordResult res = userManager->get_current_user_premium_type(userManager, &premium_type);
 
     ret["result"] = static_cast<int>(res);
-    if (premium_type != nullptr) {
-        ret["premium_type"] = static_cast<int>(*premium_type);
-    } else {
-        ret["premium_type"] = 0;
-    }
-    memdelete(premium_type);
+    ret["premium_type"] = static_cast<int>(premium_type);
 
     return ret;
 }
@@ -76,21 +60,14 @@ Dictionary IDGSUser::get_current_user_premium_type() {
 Dictionary IDGSUser::current_user_has_flag(int flag) {
     IDiscordUserManager* userManager = IDGSCore::get_user_manager();
     Dictionary ret;
-    ret["result"] = -1;
-    ret["usr"] = Variant();
+    ret["result"] = DiscordResult_InternalError;
+    ret["has_flag"] = false;
     ERR_FAIL_COND_V(userManager == nullptr, ret);
 
-    bool* has_flag = (bool*)memalloc(sizeof(bool));
-    EDiscordResult res = userManager->current_user_has_flag(userManager, static_cast<EDiscordUserFlag>(flag), has_flag);
-
+    bool has_flag = false;
+    EDiscordResult res = userManager->current_user_has_flag(userManager, static_cast<EDiscordUserFlag>(flag), &has_flag);
     ret["result"] = static_cast<int>(res);
-    if (has_flag != nullptr) {
-        ret["has_flag"] = *has_flag;
-    } else {
-        ret["has_flag"] = false;
-    }
-    memdelete(has_flag);
-
+    ret["has_flag"] = has_flag;
     return ret;
 }
 

@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8bdr8wq658px"]
+
+[ext_resource type="Script" path="res://components/UserCard/UserCard.gd" id="1_obskx"]
+[ext_resource type="PackedScene" uid="uid://djdt0ibec8g1k" path="res://components/NetworkImage/NetworkImage.tscn" id="2_jnnv2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77p3p"]
+bg_color = Color(0.137255, 0.141176, 0.156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1032, 0.10656, 0.12, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbvta"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0666667, 0.0705882, 0.0784314, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_546v3"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.345098, 0.396078, 0.94902, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="UserCard" type="PanelContainer"]
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_77p3p")
+script = ExtResource("1_obskx")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VB" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="Avatar" parent="MC/VB" instance=ExtResource("2_jnnv2")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="PC" type="PanelContainer" parent="MC/VB"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbvta")
+
+[node name="VB" type="VBoxContainer" parent="MC/VB/PC"]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="MC/VB/PC/VB"]
+layout_mode = 2
+
+[node name="UsernameLabel" type="Label" parent="MC/VB/PC/VB/HB"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Username#1000"
+
+[node name="BotTag" type="PanelContainer" parent="MC/VB/PC/VB/HB"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_546v3")
+
+[node name="BotLabel" type="Label" parent="MC/VB/PC/VB/HB/BotTag"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "BOT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IdLabel" type="Label" parent="MC/VB/PC/VB"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
+text = "Id"
+
+[node name="PremiumLabel" type="Label" parent="MC/VB/PC/VB"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_font_sizes/font_size = 12
+text = "Premium"
+
+[node name="FlagsLabel" type="Label" parent="MC/VB/PC/VB"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_font_sizes/font_size = 12
+text = "Flags"

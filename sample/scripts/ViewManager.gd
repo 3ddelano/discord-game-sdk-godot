@@ -1,10 +1,10 @@
 class_name ViewManager
 extends VBoxContainer
 
-@onready var user_btn = $HB/UserBtn
-@onready var activity_btn = $HB/ActivityBtn
-@onready var overlay_btn = $HB/OverlayBtn
-@onready var relationships_btn = $HB/RelationshipsBtn
+@onready var user_btn = %UserBtn
+@onready var activity_btn = %ActivityBtn
+@onready var overlay_btn = %OverlayBtn
+@onready var relationships_btn = %RelationshipsBtn
 
 
 func _ready() -> void:
@@ -16,16 +16,16 @@ func _ready() -> void:
 
 func get_view(view_name: String):
 	if view_name == "Logs":
-		return $VSC/LogsView
+		return %LogsView
 
 	elif view_name == "Notifications":
-		return $VSC/VB/NotificationsLayer/NotificationsView
+		return %NotificationsView
 
-	return get_node("VSC/VB/" + view_name + "View")
+	return get_node("VSC/SC/VB/" + view_name + "View")
 
 
 func set_view(view_name: String):
-	for child in $VSC/VB.get_children():
+	for child in $VSC/SC/VB.get_children():
 		if child is CanvasItem:
 			child.visible = false
 

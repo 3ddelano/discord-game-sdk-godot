@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c380stcei1ept"]
+[gd_scene load_steps=4 format=3 uid="uid://citje3bq1h0jh"]
 
 [ext_resource type="Script" path="res://scenes/OverlayView/OverlayView.gd" id="1"]
-[ext_resource type="FontFile" path="res://fonts/roboto-32b.tres" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/UI/PrimaryButton.tscn" id="5"]
+[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_hp6xm"]
+[ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="5"]
 
 [node name="OverlayView" type="VBoxContainer"]
 anchors_preset = 15
@@ -15,7 +15,8 @@ script = ExtResource("1")
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2")
+theme_override_fonts/font = ExtResource("2_hp6xm")
+theme_override_font_sizes/font_size = 32
 text = "Overlay"
 
 [node name="VB" type="VBoxContainer" parent="."]

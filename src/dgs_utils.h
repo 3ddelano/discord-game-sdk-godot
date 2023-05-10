@@ -10,7 +10,10 @@ using namespace godot;
 
 #define DGS_BIND_METHOD(m_class, m_name) ClassDB::bind_method(D_METHOD(#m_name), &m_class::m_name)
 
-static Dictionary dgs_discord_user_to_dict(DiscordUser* user) {
+static Variant dgs_discord_user_to_dict(DiscordUser* user) {
+    if (user == nullptr) {
+        return Variant();
+    }
     Dictionary ret;
     ret["id"] = user->id;
     ret["username"] = String(user->username);
@@ -20,7 +23,10 @@ static Dictionary dgs_discord_user_to_dict(DiscordUser* user) {
     return ret;
 }
 
-static Dictionary dgs_discord_activity_to_dict(DiscordActivity* activity) {
+static Variant dgs_discord_activity_to_dict(DiscordActivity* activity) {
+    if (activity == nullptr) {
+        return Variant();
+    }
     Dictionary ret;
     ret["type"] = static_cast<int>(activity->type);
     ret["application_id"] = activity->application_id;
@@ -41,5 +47,26 @@ static Dictionary dgs_discord_activity_to_dict(DiscordActivity* activity) {
     ret["secrets_join"] = String(activity->secrets.join);
     ret["secrets_spectate"] = String(activity->secrets.spectate);
     ret["instance"] = activity->instance ? true : false;
+    return ret;
+}
+
+static Variant dgs_discord_presence_to_dict(DiscordPresence* presence) {
+    if (presence == nullptr) {
+        return Variant();
+    }
+    Dictionary ret;
+    ret["status"] = static_cast<int>(presence->status);
+    ret["activity"] = dgs_discord_activity_to_dict(&presence->activity);
+    return ret;
+}
+
+static Variant dgs_discord_relationship_to_dict(DiscordRelationship* relationship) {
+    if (relationship == nullptr) {
+        return Variant();
+    }
+    Dictionary ret;
+    ret["type"] = static_cast<int>(relationship->type);
+    ret["user"] = dgs_discord_user_to_dict(&relationship->user);
+    ret["presence"] = dgs_discord_presence_to_dict(&relationship->presence);
     return ret;
 }

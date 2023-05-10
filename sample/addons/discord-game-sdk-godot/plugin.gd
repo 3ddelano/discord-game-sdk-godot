@@ -1,3 +1,7 @@
+# Copyright (c) 2023-present Delano Lourenco
+# https://github.com/3ddelano/discord-game-sdk-godot/
+# MIT License
+
 @tool
 extends EditorPlugin
 

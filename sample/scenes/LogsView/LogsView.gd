@@ -5,8 +5,9 @@ extends VBoxContainer
 
 
 func _ready() -> void:
-	DiscordSDK.Core.get_instance().connect("discord_log", Callable(self, "_on_discord_log"))
-	Store.connect("discord_create", func ():
+	DiscordSDK.Core.get_instance().discord_log.connect(_on_discord_log)
+
+	Store.discord_create.connect(func ():
 		DiscordSDK.Core.set_log_level(DiscordSDK.Core.LogLevel.Debug)
 	)
 
@@ -15,7 +16,7 @@ func _on_discord_log(msg: Dictionary):
 	log_msg(msg.level, msg.message)
 
 
-func log_msg(level: int, msg: String):
+func log_msg(level: DiscordSDK.Core.LogLevel, msg: String):
 	var color = "#ffffff"
 	var level_str = "Info"
 	match level:

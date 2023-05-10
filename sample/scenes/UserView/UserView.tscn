@@ -1,203 +1,97 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqyyh7wsttxr2"]
+[gd_scene load_steps=8 format=3 uid="uid://rjivhq2c1j1w"]
 
-[ext_resource type="Script" path="res://scenes/UserView/UserView.gd" id="1_feoo4"]
-[ext_resource type="Texture2D" uid="uid://6vos1pkll5r" path="res://logo.png" id="2_1a6tb"]
-[ext_resource type="FontFile" path="res://fonts/roboto-32b.tres" id="3_kcjc6"]
-[ext_resource type="FontFile" path="res://fonts/roboto-16b.tres" id="4_tw2fu"]
-[ext_resource type="Script" path="res://scenes/UserView/EnterCredentials.gd" id="5_upia5"]
-[ext_resource type="FontFile" path="res://fonts/roboto-16r.tres" id="6_ewh1x"]
+[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_so3el"]
+[ext_resource type="Script" path="res://scenes/UserView/CurrentUser.gd" id="3_fqukf"]
+[ext_resource type="PackedScene" uid="uid://c8bdr8wq658px" path="res://components/UserCard/UserCard.tscn" id="3_j1yxi"]
+[ext_resource type="PackedScene" uid="uid://djdt0ibec8g1k" path="res://components/NetworkImage/NetworkImage.tscn" id="3_x05yd"]
+[ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="5_5espc"]
+[ext_resource type="Script" path="res://scenes/UserView/GetUser.gd" id="6_47s12"]
 
-[sub_resource type="StyleBoxFlat" id="1"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.164706, 0.505882, 0.188235, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c80jo"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.192157, 0.2, 0.219608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="2"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.203922, 0.623529, 0.235294, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="3"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.145098, 0.454902, 0.164706, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="7"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.529412, 0.529412, 0.219608, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="8"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.631373, 0.631373, 0.258824, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="9"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.47, 0.47, 0.1927, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="11"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.529412, 0.258824, 0.215686, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="10"]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.6, 0.294118, 0.247059, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[node name="UserView" type="CenterContainer"]
+[node name="UserView" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
-script = ExtResource("1_feoo4")
 
-[node name="HB" type="HBoxContainer" parent="."]
+[node name="Title" type="Label" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 8
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_so3el")
+theme_override_font_sizes/font_size = 32
+text = "User"
 
-[node name="Left" type="VBoxContainer" parent="HB"]
-custom_minimum_size = Vector2(400, 0)
+[node name="Sections" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="HB/Left"]
-custom_minimum_size = Vector2(128, 128)
+[node name="CurrentUser" type="PanelContainer" parent="Sections"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c80jo")
+script = ExtResource("3_fqukf")
+
+[node name="VB" type="VBoxContainer" parent="Sections/CurrentUser"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Sections/CurrentUser/VB"]
+layout_mode = 2
+text = "Current User"
+
+[node name="Loading" parent="Sections/CurrentUser/VB" instance=ExtResource("3_x05yd")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="Card" parent="Sections/CurrentUser/VB" instance=ExtResource("3_j1yxi")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="GetUser" type="PanelContainer" parent="Sections"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c80jo")
+script = ExtResource("6_47s12")
+_id_lineedit_path = NodePath("VB/HB/IdLineEdit")
+_getuser_btn_path = NodePath("VB/HB/GetUserBtn")
+_loading_path = NodePath("VB/Loading")
+_user_card_path = NodePath("VB/Card")
+
+[node name="VB" type="VBoxContainer" parent="Sections/GetUser"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Sections/GetUser/VB"]
+layout_mode = 2
+text = "Get User"
+
+[node name="HB" type="HBoxContainer" parent="Sections/GetUser/VB"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("2_1a6tb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Title" type="Label" parent="HB/Left"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_kcjc6")
-text = "EOS Godot Sample"
-
-[node name="Desc" type="RichTextLabel" parent="HB/Left"]
-layout_mode = 2
-theme_override_fonts/bold_font = ExtResource("4_tw2fu")
-bbcode_enabled = true
-text = "This sample project demonstrates how to use Epic Online Services SDK in Godot using a SDK wrapper.
-
-This project is not affiliated with Epic Games Inc nor does it endorse Epic Online Services.
-Use at your own risk."
-
-[node name="Right" type="VBoxContainer" parent="HB"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_vertical = 4
 theme_override_constants/separation = 8
 
-[node name="ChooseMethod" type="VBoxContainer" parent="HB/Right"]
+[node name="IdLineEdit" type="LineEdit" parent="Sections/GetUser/VB/HB"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="GetUserBtn" parent="Sections/GetUser/VB/HB" instance=ExtResource("5_5espc")]
+layout_mode = 2
+text = "Get user"
+
+[node name="Loading" parent="Sections/GetUser/VB" instance=ExtResource("3_x05yd")]
+visible = false
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
-[node name="LoginTypeLabel" type="Label" parent="HB/Right/ChooseMethod"]
-layout_mode = 2
-text = "Login Type"
-
-[node name="LoginTypeButton" type="OptionButton" parent="HB/Right/ChooseMethod"]
-layout_mode = 2
-
-[node name="EnterCredentials" type="VBoxContainer" parent="HB/Right"]
+[node name="Card" parent="Sections/GetUser/VB" instance=ExtResource("3_j1yxi")]
 visible = false
 layout_mode = 2
-script = ExtResource("5_upia5")
-
-[node name="IdLabel" type="Label" parent="HB/Right/EnterCredentials"]
-layout_mode = 2
-text = "Devtool Server URL"
-
-[node name="IdLineEdit" type="LineEdit" parent="HB/Right/EnterCredentials"]
-layout_mode = 2
-text = "localhost:8000"
-
-[node name="TokenLabel" type="Label" parent="HB/Right/EnterCredentials"]
-layout_mode = 2
-text = "Credential Name"
-
-[node name="TokenLineEdit" type="LineEdit" parent="HB/Right/EnterCredentials"]
-layout_mode = 2
-secret = true
-
-[node name="LoginButton" type="Button" parent="HB/Right"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("6_ewh1x")
-theme_override_styles/normal = SubResource("1")
-theme_override_styles/hover = SubResource("2")
-theme_override_styles/pressed = SubResource("3")
-theme_override_styles/focus = SubResource("1")
-text = "Log in"
-
-[node name="BackButton" type="Button" parent="HB/Right"]
-visible = false
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("6_ewh1x")
-theme_override_styles/normal = SubResource("7")
-theme_override_styles/hover = SubResource("8")
-theme_override_styles/pressed = SubResource("9")
-theme_override_styles/focus = SubResource("7")
-text = "Back"
-
-[node name="LoginStatus" type="Label" parent="HB/Right"]
-visible = false
-layout_mode = 2
-text = "Logging in..."
-
-[node name="RetryLoginButton" type="Button" parent="HB/Right"]
-visible = false
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("6_ewh1x")
-theme_override_styles/normal = SubResource("7")
-theme_override_styles/hover = SubResource("8")
-theme_override_styles/pressed = SubResource("9")
-theme_override_styles/focus = SubResource("7")
-text = "Retry"
-
-[node name="LogoutButton" type="Button" parent="HB/Right"]
-visible = false
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("6_ewh1x")
-theme_override_styles/normal = SubResource("11")
-theme_override_styles/hover = SubResource("10")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/focus = SubResource("11")
-text = "Logout"

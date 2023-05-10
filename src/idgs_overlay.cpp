@@ -23,7 +23,7 @@ void IDGSOverlay::_bind_methods() {
 bool IDGSOverlay::is_enabled() {
     IDiscordOverlayManager* overlayManager = IDGSCore::get_overlay_manager();
     ERR_FAIL_COND_V(overlayManager == nullptr, false);
-    bool enabled = new bool();
+    bool enabled = false;
     overlayManager->is_enabled(overlayManager, &enabled);
     return enabled;
 }
@@ -31,7 +31,7 @@ bool IDGSOverlay::is_enabled() {
 bool IDGSOverlay::is_locked() {
     IDiscordOverlayManager* overlayManager = IDGSCore::get_overlay_manager();
     ERR_FAIL_COND_V(overlayManager == nullptr, false);
-    bool locked = new bool();
+    bool locked = false;
     overlayManager->is_locked(overlayManager, &locked);
     return locked;
 }

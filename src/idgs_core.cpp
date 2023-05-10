@@ -22,13 +22,8 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
     params.event_data = this;
     params.user_events = &IDGSUser::_events;
     params.activity_events = &IDGSActivity::_events;
-    // params.relationship_events = &RelationshipManager::events_;
-    // params.lobby_events = &LobbyManager::events_;
-    // params.network_events = &NetworkManager::events_;
-    // params.overlay_events = &OverlayManager::events_;
-    // params.store_events = &StoreManager::events_;
-    // params.voice_events = &VoiceManager::events_;
-    // params.achievement_events = &AchievementManager::events_;
+    params.relationship_events = &IDGSRelationship::_events;
+    params.overlay_events = &IDGSOverlay::_events;
 
     EDiscordResult res = DiscordCreate(DISCORD_VERSION, &params, &_core);
     if (res != DiscordResult_Ok || !_core) {
@@ -37,6 +32,9 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
 
     // Loads the current user
     get_user_manager();
+
+    // Loads the relationships
+    get_relationship_manager();
 
     return static_cast<int>(res);
 }

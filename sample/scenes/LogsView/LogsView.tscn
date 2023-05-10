@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl2qvlvdhn2iw"]
 
-[ext_resource type="FontFile" path="res://fonts/roboto-13r.tres" id="1"]
 [ext_resource type="Script" path="res://scenes/LogsView/LogsView.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="2_gnrce"]
 
 [sub_resource type="StyleBoxFlat" id="5"]
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
@@ -35,8 +35,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
-theme_override_fonts/normal_font = ExtResource("1")
+theme_override_fonts/normal_font = ExtResource("2_gnrce")
+theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
-text = "Logs
+text = "DiscordSDK Logs
 "
 selection_enabled = true

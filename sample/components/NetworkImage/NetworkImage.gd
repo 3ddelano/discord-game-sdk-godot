@@ -1,9 +1,11 @@
 class_name NetworkImage
-extends MarginContainer
+extends Panel
 
-var LOADING_TEXTURE = preload("res://scenes/UI/loading-icon.png")
+signal loaded
 
-@onready var texture_rect = $TR
+var LOADING_TEXTURE = preload("res://components/NetworkImage/loading-icon.png")
+
+@onready var texture_rect = $CenteredImage
 @onready var anim_player = $Anim
 
 enum States {
@@ -13,6 +15,27 @@ enum States {
 
 var _state = States.Loading
 var _url: String
+
+
+func fetch_image(url: String):
+	_url = url
+	if Store.network_image_cache.has(url):
+		# Directly set the image
+		texture_rect.texture = Store.network_image_cache[url]
+		set_state(States.Loaded)
+		call_deferred("emit_signal", "loaded")
+		return
+
+	set_state(States.Loading)
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(Callable(self, "_on_request_completed"))
+	http_request.request(url)
+
+
+func reset():
+	set_state(States.Loading)
+
 
 func _ready() -> void:
 	set_state(States.Loading)
@@ -25,23 +48,8 @@ func set_state(new_state: States):
 		texture_rect.texture = LOADING_TEXTURE
 		anim_player.play("rotate")
 	elif _state == States.Loaded:
-		$TR.set_rotation(0)
+		texture_rect.set_rotation(0)
 		anim_player.stop(true)
-
-
-func fetch_image(url: String):
-	_url = url
-	if Store.network_image_cache.has(url):
-		# Directly set the image
-		texture_rect.texture = Store.network_image_cache[url]
-		set_state(States.Loaded)
-		return
-
-	set_state(States.Loading)
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
-	http_request.connect("request_completed", Callable(self, "_on_request_completed"))
-	http_request.request(url)
 
 
 func _on_request_completed(result, response_code, _headers, body):
@@ -59,3 +67,4 @@ func _on_request_completed(result, response_code, _headers, body):
 
 	texture_rect.texture = image_texture
 	set_state(States.Loaded)
+	loaded.emit()

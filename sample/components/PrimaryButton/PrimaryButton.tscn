@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr8kkwn42djaf"]
+
+[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_vlhym"]
+
+[sub_resource type="StyleBoxFlat" id="6"]
+content_margin_left = 16.0
+content_margin_top = 2.0
+content_margin_right = 16.0
+content_margin_bottom = 2.0
+bg_color = Color(0.345098, 0.396078, 0.94902, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3e6as"]
+content_margin_left = 16.0
+content_margin_top = 2.0
+content_margin_right = 16.0
+content_margin_bottom = 2.0
+bg_color = Color(0.278431, 0.321569, 0.768627, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qc6wj"]
+content_margin_left = 16.0
+content_margin_top = 2.0
+content_margin_right = 16.0
+content_margin_bottom = 2.0
+bg_color = Color(0.235294, 0.270588, 0.647059, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fo0y1"]
+
+[node name="PrimaryButton" type="Button"]
+offset_right = 118.0
+offset_bottom = 23.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("1_vlhym")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3e6as")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qc6wj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fo0y1")
+text = "Primary Button"

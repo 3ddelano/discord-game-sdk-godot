@@ -1,5 +1,6 @@
 extends Node
 
+
 func _process(_delta: float):
 	IDGSCore.tick()
 

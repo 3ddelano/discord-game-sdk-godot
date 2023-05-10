@@ -5,6 +5,7 @@
 #include "idgs_activity.h"
 #include "idgs_core.h"
 #include "idgs_overlay.h"
+#include "idgs_relationship.h"
 #include "idgs_user.h"
 
 using namespace godot;
@@ -13,27 +14,18 @@ static IDGSCore *_idgsCore;
 static IDGSActivity *_idgsActivity;
 static IDGSOverlay *_idgsOverlay;
 static IDGSUser *_idgsUser;
+static IDGSRelationship *_idgsRelationship;
 
 void initialize_dgs_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
         return;
     }
 
-    ClassDB::register_class<IDGSCore>();
-    _idgsCore = memnew(IDGSCore);
-    Engine::get_singleton()->register_singleton("IDGSCore", IDGSCore::get_singleton());
-
-    ClassDB::register_class<IDGSActivity>();
-    _idgsActivity = memnew(IDGSActivity);
-    Engine::get_singleton()->register_singleton("IDGSActivity", IDGSActivity::get_singleton());
-
-    ClassDB::register_class<IDGSOverlay>();
-    _idgsOverlay = memnew(IDGSOverlay);
-    Engine::get_singleton()->register_singleton("IDGSOverlay", IDGSOverlay::get_singleton());
-
-    ClassDB::register_class<IDGSUser>();
-    _idgsUser = memnew(IDGSUser);
-    Engine::get_singleton()->register_singleton("IDGSUser", IDGSUser::get_singleton());
+    DGS_REGISTER_SINGLETON(_idgsCore, IDGSCore);
+    DGS_REGISTER_SINGLETON(_idgsActivity, IDGSActivity);
+    DGS_REGISTER_SINGLETON(_idgsOverlay, IDGSOverlay);
+    DGS_REGISTER_SINGLETON(_idgsUser, IDGSUser);
+    DGS_REGISTER_SINGLETON(_idgsRelationship, IDGSRelationship);
 }
 
 void uninitialize_dgs_module(ModuleInitializationLevel p_level) {
@@ -41,17 +33,11 @@ void uninitialize_dgs_module(ModuleInitializationLevel p_level) {
         return;
     }
 
-    Engine::get_singleton()->unregister_singleton("IDGSCore");
-    memdelete(_idgsCore);
-
-    Engine::get_singleton()->unregister_singleton("IDGSActivity");
-    memdelete(_idgsActivity);
-
-    Engine::get_singleton()->unregister_singleton("IDGSOverlay");
-    memdelete(_idgsOverlay);
-
-    Engine::get_singleton()->unregister_singleton("IDGSUser");
-    memdelete(_idgsUser);
+    DGS_DEREGISTER_SINGLETON(_idgsCore, IDGSCore);
+    DGS_DEREGISTER_SINGLETON(_idgsActivity, IDGSActivity);
+    DGS_DEREGISTER_SINGLETON(_idgsOverlay, IDGSOverlay);
+    DGS_DEREGISTER_SINGLETON(_idgsUser, IDGSUser);
+    DGS_DEREGISTER_SINGLETON(_idgsRelationship, IDGSRelationship);
 }
 
 extern "C" {
