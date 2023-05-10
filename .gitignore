@@ -6,3 +6,4 @@ vc140.pdb
 .sconsign.dblite
 
 *.obj
+*.os
