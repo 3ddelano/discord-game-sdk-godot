@@ -1,6 +1,7 @@
 name: 🛠️ Builds
 on:
     push:
+    pull_request:
     workflow_dispatch:
 
 jobs:
@@ -83,20 +84,25 @@ jobs:
               run: |
                   scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}'
 
+            - name: Run setup.py
+              shell: sh
+              run: |
+                  python setup.py
+
             - name: Compile extension
               shell: sh
               run: |
-                  scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}'
+                  scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }} dev_build=no'
 
             - name: (Windows) Delete compilation files
               if: ${{ matrix.platform == 'windows' }}
               run: |
-                  Remove-Item sample/addons/discord-game-sdk-godot/bin/* -Include *.exp,*.lib,*.pdb,*ilk -Force
+                  Remove-Item sample/addons/discord-game-sdk-godot/bin/* -Include *.exp,*.lib,*.pdb,*.ilk -Force
 
             - name: Copy extra files to addon folder
               shell: sh
               run: |
-                  cp --no-clobber '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE.md' '${{ github.workspace }}/sample/addons/discord-game-sdk-godot'
+                  cp --no-clobber '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE.md' '${{ github.workspace }}/sample/addons/discord-game-sdk-godot/'
 
             - name: Upload artifact
               uses: actions/upload-artifact@v3
@@ -113,14 +119,6 @@ jobs:
                   path: "${{ github.workspace }}/sample/addons/discord-game-sdk-godot/bin/"
                   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
 
-            # - name: Create and upload asset
-            #   uses: ncipollo/release-action@v1
-            #   with:
-            #       allowUpdates: true
-            #       artifacts: "discord_game_sdk_godot.${{ matrix.platform }}.${{ matrix.arch }}.zip"
-            #       omitNameDuringUpdate: true
-            #       omitBodyDuringUpdate: true
-            #       token: ${{ secrets.GITHUB_TOKEN }}
             - name: Download artifact
               uses: actions/download-artifact@v2
               with:

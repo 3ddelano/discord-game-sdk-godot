@@ -81,8 +81,8 @@ This is a regular plugin for `Godot 4.x`. To install the plugin follow the steps
        print("Initialzized Discord GameSDK!")
    
 
-   func _on_discord_log(log_msg: Dictionary):
-       print(msg.level, msg.message)
+   func _on_discord_log(log_msg: DiscordLogData):
+       print(str(log_msg.level) + " | " + log_msg.message)
    ```
 
 
