@@ -1,33 +1,32 @@
 extends Control
 
-@onready var CLIENT_ID := int(Env.get_var("CLIENT_ID", 0)) # Paste your own here
-@onready var APPLICATION_ID := int(Env.get_var("APPLICATION_ID", 0)) # Paste your own here
+# Testing IDs
+@onready var CLIENT_ID := 928212232213520454 # Paste your own here
+@onready var APPLICATION_ID := 928212232213520454 # Paste your own here
 
-@export var _views_path: NodePath
-@onready var views = get_node(_views_path) as VBoxContainer
+@onready var views: VBoxContainer = %ViewManager
 
 
 func _ready() -> void:
-	if CLIENT_ID == 0:
-		Store.log_msg(DiscordSDK.Core.LogLevel.Error, "CLIENT_ID is not set")
-	if APPLICATION_ID == 0:
-		Store.log_msg(DiscordSDK.Core.LogLevel.Error, "APPLICATION_ID is not set")
-
-	print("Ready!")
 	Store._main_node = self
 
-	# Boilerplate code
-	DiscordSDK.Relationship.get_instance().refresh.connect(_on_refresh)
-	var create_res = DiscordSDK.Core.create(CLIENT_ID)
-	if DiscordSDK.is_error(create_res):
-		print("Failed to create DiscordGameSDK: Got result %s" % DiscordSDK.result_str(create_res))
+	if CLIENT_ID == 0:
+		Store.log_error("CLIENT_ID is not set in Main.gd")
+		return
+	if APPLICATION_ID == 0:
+		Store.log_error("APPLICATION_ID is not set in Main.gd")
 		return
 
-	print("Initialzized DiscordGameSDK!")
-	Store.discord_create.emit()
+	# Boilerplate code
+	# Setup Discord GameSDK
+	var create_res = DiscordSDK.Core.create(CLIENT_ID)
+	if DiscordSDK.is_error(create_res):
+		Store.log_error("Failed to create DiscordGameSDK: Got result %s" % DiscordSDK.result_str(create_res))
+		return
+	Store.log_info("Initialzized DiscordGameSDK!")
+	# End boilerplate
 
-	# Debug purpose
-	_on_tab_pressed()
+	Store.discord_create.emit()
 
 
 func _input(event: InputEvent) -> void:
@@ -40,7 +39,7 @@ func _input(event: InputEvent) -> void:
 
 # Dev testing stuff
 func _on_tab_pressed():
-	print("Tab pressed")
+	print("Tab key pressed")
 
 	# ----- Activity
 #	print("----- Activity: register_command: ", DiscordSDK.Activity.register_command("https://google.com"))
@@ -88,15 +87,3 @@ func _on_tab_pressed():
 
 func get_view_manager():
 	return views
-
-
-func _on_refresh():
-	DiscordSDK.Relationship.filter(Callable(self, "_on_refresh"))
-
-	# ----- Relationships
-	print("----- Relationship: count: ", DiscordSDK.Relationship.count())
-	print("----- Relationship: get_user: ", DiscordSDK.Relationship.get_user(321233875776962560))
-	print("----- Relationship: get_user: ", DiscordSDK.Relationship.get_user(753103238332416050))
-	print("----- Relationship: get_user: ", DiscordSDK.Relationship.get_at(1))
-	print('a')
-

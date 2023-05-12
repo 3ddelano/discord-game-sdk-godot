@@ -46,10 +46,10 @@ func _on_update_activity_btn():
 	DiscordSDK.Activity.update_activity(_activity_data)
 	DiscordSDK.Activity.get_instance().update_activity_cb.connect(func (res):
 		if DiscordSDK.is_error(res):
-			Store.log_msg(DiscordSDK.Core.LogLevel.Error, "----- Activity: update_activity: Error: " + DiscordSDK.result_str(res))
+			Store.log_error("----- Activity: update_activity: Error: " + DiscordSDK.result_str(res))
 			return
 
-		Store.log_msg(DiscordSDK.Core.LogLevel.Info, "Activity:update_activity:Ok")
+		Store.log_info("Activity:update_activity:Ok")
 	)
 
 
@@ -57,10 +57,10 @@ func _on_clear_activity_btn():
 	DiscordSDK.Activity.clear_activity()
 	DiscordSDK.Activity.get_instance().clear_activity_cb.connect(func (res):
 		if DiscordSDK.is_error(res):
-			Store.log_msg(DiscordSDK.Core.LogLevel.Error, "----- Activity: clear_activity: Error: " + DiscordSDK.result_str(res))
+			Store.log_error("----- Activity: clear_activity: Error: " + DiscordSDK.result_str(res))
 			return
 
-		Store.log_msg(DiscordSDK.Core.LogLevel.Info, "Activity:clear_activity:Ok")
+		Store.log_info("Activity:clear_activity:Ok")
 	)
 
 

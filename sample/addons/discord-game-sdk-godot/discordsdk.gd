@@ -107,7 +107,7 @@ class Core:
 	static func get_instance():
 		return IDGSCore
 
-	static func create(p_client_id: int, flags := CreateFlags.Default) -> Result:
+	static func create(p_client_id: int, flags := CreateFlags.NoRequireDiscord) -> Result:
 		return IDGSCore.create_core(p_client_id, flags)
 
 	static func set_log_level(p_min_level: LogLevel) -> void:
@@ -277,14 +277,25 @@ class Relationship:
 	static func get_instance():
 		return IDGSRelationship
 
-	static func count() -> Dictionary:
-		return IDGSRelationship.count()
+#	static func count() -> Dictionary:
+#		return IDGSRelationship.count()
 
-	static func filter(p_filter_func: Callable) -> void:
+	static func filter(p_filter_func: Callable) -> Array[Dictionary]:
+		# Workaround for filtering Relationship since I was unable to get Callable to work in GDExtension
+		# So we load all the relationships and filter them in GDScript
 		IDGSRelationship.filter()
+		var relationships: Array[Dictionary] = []
+		var count: int = IDGSRelationship.count().count
+
+		for i in range(count):
+			var relationship = IDGSRelationship.get_at(i).relationship
+			if not p_filter_func.call(relationship):
+				continue
+			relationships.append(relationship)
+		return relationships
 
 	static func get_user(p_user_id: int) -> Dictionary:
 		return IDGSRelationship.get_user(p_user_id)
 
-	static func get_at(p_index: int) -> Dictionary:
-		return IDGSRelationship.get_at(p_index)
+#	static func get_at(p_index: int) -> Dictionary:
+#		return IDGSRelationship.get_at(p_index)

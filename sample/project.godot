@@ -13,12 +13,12 @@ config_version=5
 config/name="Discord Game SDK Godot 4.x"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0")
-boot_splash/bg_color=Color(0.192157, 0.2, 0.219608, 1)
+boot_splash/bg_color=Color(0.345098, 0.396078, 0.94902, 1)
+boot_splash/image="res://logo.png"
 config/icon="res://logo.png"
 
 [autoload]
 
-Env="*res://scripts/Env.gd"
 Store="*res://scripts/Store.gd"
 Discord_tick="*res://addons/discord-game-sdk-godot/tick.gd"
 

@@ -11,5 +11,5 @@ windows.x86_64.release = "bin/libdgs.windows.template_release.x86_64.dll"
 [dependencies]
 windows.debug.x86_64 = "bin/discord_game_sdk.dll"
 windows.release.x86_64 = "bin/discord_game_sdk.dll"
-linux.debug.x86_64 = "bin/discord_game_sdk.so"
-linux.release.x86_64 = "bin/discord_game_sdk.so"
+linux.debug.x86_64 = "bin/libdiscord_game_sdk.so"
+linux.release.x86_64 = "bin/libdiscord_game_sdk.so"

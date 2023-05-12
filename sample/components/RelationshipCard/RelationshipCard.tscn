@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bocm5rrlyx8xd"]
+
+[ext_resource type="Script" path="res://components/RelationshipCard/RelationshipCard.gd" id="1_hjvhi"]
+[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_uc0ef"]
+[ext_resource type="PackedScene" uid="uid://c8bdr8wq658px" path="res://components/UserCard/UserCard.tscn" id="2_0gte5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkxph"]
+bg_color = Color(0.0264, 0.02712, 0.03, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="RelationshipCard" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkxph")
+script = ExtResource("1_hjvhi")
+
+[node name="VB" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MC" type="MarginContainer" parent="VB"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="RelationshipTypeLabel" type="Label" parent="VB/MC"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_fonts/font = ExtResource("1_uc0ef")
+theme_override_font_sizes/font_size = 12
+text = "Friend"
+
+[node name="UserCard" parent="VB" instance=ExtResource("2_0gte5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

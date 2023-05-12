@@ -11,10 +11,10 @@ func _on_btn_pressed():
 
 	var res = DiscordSDK.Activity.register_steam(int(steam_id))
 	if DiscordSDK.is_error(res):
-		Store.log_msg(DiscordSDK.Core.LogLevel.Error, "----- Activity: register_steam: Error: " + DiscordSDK.result_str(res))
+		Store.log_error("----- Activity: register_steam: Error: " + DiscordSDK.result_str(res))
 		return
 
-	Store.log_msg(DiscordSDK.Core.LogLevel.Info, "Activity:register_steam:Ok")
+	Store.log_info("Activity:register_steam:Ok")
 
 
 func _ready() -> void:

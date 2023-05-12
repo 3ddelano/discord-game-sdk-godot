@@ -32,7 +32,7 @@ func _on_getuser_btn_pressed():
 
 func _on_getuser_cb(res: Dictionary):
 	if DiscordSDK.is_error(res):
-		Store.log_msg(DiscordSDK.Core.LogLevel.Error, "----- User: get_user: Error: " + DiscordSDK.result_str(res))
+		Store.log_error("----- User: get_user: Error: " + DiscordSDK.result_str(res))
 		set_state(States.Default)
 		return
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7i5mvhud882g"]
+[gd_scene load_steps=15 format=3 uid="uid://c7i5mvhud882g"]
 
 [ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_6ynui"]
 [ext_resource type="PackedScene" uid="uid://c7a4wvc65f57" path="res://scenes/ActivityView/ActivityView.tscn" id="2"]
 [ext_resource type="Script" path="res://Main.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/ViewManager.gd" id="3_j157n"]
 [ext_resource type="PackedScene" uid="uid://cl2qvlvdhn2iw" path="res://scenes/LogsView/LogsView.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://6vos1pkll5r" path="res://logo.png" id="4_87o37"]
 [ext_resource type="PackedScene" uid="uid://rjivhq2c1j1w" path="res://scenes/UserView/UserView.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://citje3bq1h0jh" path="res://scenes/OverlayView/OverlayView.tscn" id="9"]
@@ -55,7 +56,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("4")
 script = ExtResource("3")
-_views_path = NodePath("MC/ViewManager")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -73,32 +73,54 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="ViewManager" type="VBoxContainer" parent="MC"]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_j157n")
 
-[node name="HB" type="HFlowContainer" parent="MC/ViewManager"]
+[node name="HB" type="HBoxContainer" parent="MC/ViewManager"]
+layout_mode = 2
+
+[node name="Left" type="MarginContainer" parent="MC/ViewManager/HB"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 8
 
-[node name="UserBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+[node name="HFC" type="HFlowContainer" parent="MC/ViewManager/HB/Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="UserBtn" parent="MC/ViewManager/HB/Left/HFC" instance=ExtResource("6")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "User"
 
-[node name="ActivityBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+[node name="ActivityBtn" parent="MC/ViewManager/HB/Left/HFC" instance=ExtResource("6")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Activity"
 
-[node name="OverlayBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+[node name="OverlayBtn" parent="MC/ViewManager/HB/Left/HFC" instance=ExtResource("6")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Overlay"
 
-[node name="RelationshipsBtn" parent="MC/ViewManager/HB" instance=ExtResource("6")]
+[node name="RelationshipsBtn" parent="MC/ViewManager/HB/Left/HFC" instance=ExtResource("6")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Relationships"
+
+[node name="Right" type="HBoxContainer" parent="MC/ViewManager/HB"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Logo" type="TextureRect" parent="MC/ViewManager/HB/Right"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("4_87o37")
+expand_mode = 2
 
 [node name="VSC" type="VSplitContainer" parent="MC/ViewManager"]
 layout_mode = 2
@@ -114,6 +136,8 @@ size_flags_vertical = 3
 [node name="VB" type="VBoxContainer" parent="MC/ViewManager/VSC/SC"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 52
 
 [node name="UserView" parent="MC/ViewManager/VSC/SC/VB" instance=ExtResource("5")]
@@ -170,20 +194,20 @@ theme_override_constants/separation = 8
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MC/ViewManager"]
+[node name="Footer" type="HBoxContainer" parent="MC/ViewManager"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MC/ViewManager/HBoxContainer"]
+[node name="Label" type="Label" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6ynui")
 theme_override_font_sizes/font_size = 12
 text = "3ddelano"
 
-[node name="VSeparator" type="VSeparator" parent="MC/ViewManager/HBoxContainer"]
+[node name="VS" type="VSeparator" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 
-[node name="GithubBtn" type="LinkButton" parent="MC/ViewManager/HBoxContainer"]
+[node name="GithubBtn" type="LinkButton" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_6ynui")
@@ -191,10 +215,10 @@ theme_override_font_sizes/font_size = 12
 text = "Github Repo"
 uri = "https://github.com/3ddelano/discord-game-sdk-godot"
 
-[node name="VSeparator2" type="VSeparator" parent="MC/ViewManager/HBoxContainer"]
+[node name="VS2" type="VSeparator" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MC/ViewManager/HBoxContainer"]
+[node name="Label2" type="Label" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6ynui")
 theme_override_font_sizes/font_size = 12

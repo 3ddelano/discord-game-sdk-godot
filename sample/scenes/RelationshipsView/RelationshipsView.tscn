@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmd75bv6ub6o6"]
+[gd_scene load_steps=6 format=3 uid="uid://bmd75bv6ub6o6"]
 
 [ext_resource type="Script" path="res://scenes/RelationshipsView/RelationshipsView.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_sx6pr"]
+[ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="3_bv7vc"]
+[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="4_n2iak"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrnem"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.192157, 0.2, 0.219608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="RelationshipsView" type="VBoxContainer"]
 anchors_preset = 15
@@ -17,3 +30,31 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_sx6pr")
 theme_override_font_sizes/font_size = 32
 text = "Relationships"
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrnem")
+
+[node name="Sections" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LoadAllBtn" parent="Panel/Sections" instance=ExtResource("3_bv7vc")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Load all"
+
+[node name="CountLabel" type="Label" parent="Panel/Sections"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_n2iak")
+text = "Count: -"
+
+[node name="Relationships" type="HFlowContainer" parent="Panel/Sections"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8

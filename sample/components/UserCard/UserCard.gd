@@ -3,7 +3,10 @@ extends PanelContainer
 
 signal loaded
 
-var user = {}
+var user = null
+var activity = null
+var status = null
+
 var premium_type: DiscordSDK.User.PremiumType
 var has_partner = false
 var has_hypesquad = false
@@ -18,6 +21,12 @@ var has_hype3 = false
 @onready var id_label = %IdLabel
 @onready var premium_label = %PremiumLabel
 @onready var flags_label = %FlagsLabel
+@onready var status_container = %Status
+@onready var activity_container = %Activity
+@onready var activity_type_label = %ActivityTypeLabel
+@onready var activity_name_label = %ActivityNameLabel
+@onready var activity_details_label = %ActivityDetailsLabel
+@onready var activity_state_label = %ActivityStateLabel
 
 
 func reset():
@@ -25,6 +34,18 @@ func reset():
 	bot_tag.visible = true
 	id_label.text = "Id"
 	avatar.reset()
+	_reset_status()
+	_reset_activity()
+
+
+func set_activity(p_activity: Dictionary):
+	activity = p_activity
+	_update_activity()
+
+
+func set_status(p_status: int):
+	status = p_status
+	_update_status()
 
 
 func set_user(p_user: Dictionary):
@@ -89,6 +110,10 @@ func _update_labels():
 	var premium_type_str = DiscordSDK.User.PremiumType.keys()[premium_type_idx]
 	if premium_type_str:
 		premium_label.text = "Premium: " + premium_type_str
+	if premium_type != DiscordSDK.User.PremiumType.None:
+		premium_label.visible = true
+	else:
+		premium_label.visible = false
 
 	var flags = []
 	if has_partner:
@@ -105,3 +130,56 @@ func _update_labels():
 	var flags_str = " | ".join(flags)
 	if flags_str:
 		flags_label.text = "Flags: " + flags_str
+		flags_label.visible = true
+	else:
+		flags_label.visible = false
+
+
+func _reset_activity():
+	activity_container.visible = false
+	activity_type_label.text = ""
+	activity_name_label.text = ""
+	activity_details_label.text = ""
+	activity_state_label.text = ""
+
+
+func _update_activity():
+	if activity == null:
+		_reset_activity()
+		return
+
+	match activity.type:
+		DiscordSDK.Activity.ActivityType.Playing:
+			activity_type_label.text = "PLAYING A GAME"
+		DiscordSDK.Activity.ActivityType.Streaming:
+			activity_type_label.text = "STREAMING"
+		DiscordSDK.Activity.ActivityType.Listening:
+			activity_type_label.text = "LISTENING"
+		DiscordSDK.Activity.ActivityType.Watching:
+			activity_type_label.text = "WATCHING"
+
+	activity_type_label.visible = not activity_name_label.text.is_empty()
+	activity_name_label.text = activity.name
+	activity_name_label.visible = not activity_name_label.text.is_empty()
+	activity_details_label.text = activity.details
+	activity_details_label.visible = not activity_details_label.text.is_empty()
+	activity_state_label.text = activity.state
+	activity_state_label.visible = not activity_state_label.text.is_empty()
+	activity_container.visible = true
+
+
+func _reset_status():
+	status_container.visible = false
+
+
+func _update_status():
+	if status == null:
+		_reset_status()
+		return
+
+	for child in status_container.get_children():
+		child.visible = false
+
+	status_container.get_child(status).visible = true
+	status_container.visible = true
+
