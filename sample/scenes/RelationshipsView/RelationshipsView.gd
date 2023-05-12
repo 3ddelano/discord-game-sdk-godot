@@ -20,7 +20,7 @@ func _remove_all_cards():
 
 
 func _on_load_all_btn_pressed():
-	var relationships = DiscordSDK.Relationship.filter(func (relationship):
+	var relationships: Array[DiscordRelationshipData] = DiscordSDK.Relationship.filter(func (_relationship):
 		return true
 	)
 	var count = len(relationships)
@@ -46,7 +46,7 @@ func _on_load_all_btn_pressed():
 			DiscordSDK.Relationship.RelationshipType.Implicit:
 				card.get_type_label().text = "Implicit"
 
-		var user_card = card.get_user_card()
+		var user_card: UserCard = card.get_user_card()
 		user_card.set_user(relationship.user)
 		user_card.set_status(relationship.presence.status)
 		user_card.set_activity(relationship.presence.activity)

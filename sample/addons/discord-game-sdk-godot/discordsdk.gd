@@ -267,7 +267,7 @@ class Overlay:
 	## Fired when [method set_locked] finishes.[br]
 	## [param result]: [enum DiscordSDK.Result]
 	signal set_locked_cb(result: Result)
-		## Fired when [method open_activity_invite] finishes.[br]
+	## Fired when [method open_activity_invite] finishes.[br]
 	## [param result]: [enum DiscordSDK.Result]
 	signal open_activity_invite_cb(result: Result)
 	## Fired when [method open_voice_settings] finishes.[br]
@@ -279,6 +279,7 @@ class Overlay:
 	## Fires when the overlay is locked or unlocked (a.k.a. opened or closed)[br]
 	## [param result]: [enum DiscordSDK.Result]
 	signal toggle(locked: bool)
+
 
 	## Get the active instance of the Discord Overlay singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
@@ -322,33 +323,51 @@ class Overlay:
 ## Handles the user in Discord GameSDK
 ## @tutorial(Sample project): https://github.com/3ddelano/discord-game-sdk-godot/
 class User:
+	## Fired when [method get_user] finishes.[br]
+	## [param data]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]user[/code] ([DiscordUserData])
+	signal get_user_cb(data: Dictionary)
+	##  Fires when the User data of the currently connected user changes. They may have changed their avatar, username, or something else.
+	signal current_user_update()
+
+
 	enum UserFlag {
-		Partner = 2,
-		HypeSquadEvents = 4,
-		HypeSquadHouse1 = 64,
-		HypeSquadHouse2 = 128,
-		HypeSquadHouse3 = 256,
+		Partner = 2, ## Discord Partner
+		HypeSquadEvents = 4, ## HypeSquad Events participant
+		HypeSquadHouse1 = 64, ## House Bravery
+		HypeSquadHouse2 = 128, ## House Brilliance
+		HypeSquadHouse3 = 256, ## House Balance
 	}
 
 	enum PremiumType {
-		None = 0,
-		Tier1 = 1,
-		Tier2 = 2,
+		None = 0, ## Not a Nitro subscriber
+		Tier1 = 1, ## Nitro Classic subscriber
+		Tier2 = 2, ## Nitro subscriber
 	}
 
 
+	## Get the active instance of the Discord User singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
 		return IDGSUser
 
+	## Fetch information about the currently connected user account.
+	## If you're interested in getting more detailed information about a user — for example, their email — check out our the GetCurrentUser API endpoint in the Discord Docs.[br]
+	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]user[/code] ([DiscordUserData])[br]
+	## [b]Note:[/b] Before calling this function, you'll need to wait for the [signal current_user_update] signal to fire.
 	static func get_current_user() -> Dictionary:
 		return IDGSUser.get_current_user()
 
+	## Get user information for a given user id.[br]
+	## This method returns via [signal get_user_cb]
 	static func get_user(p_user_id: int) -> void:
 		IDGSUser.get_user(p_user_id)
 
+	## Get the [enum PremiumType] for the currently connected user.[br]
+	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]premium_type[/code] ([PremiumType])[br]
 	static func get_current_user_premium_type() -> Dictionary:
 		return IDGSUser.get_current_user_premium_type()
 
+	## See whether or not the current user has a certain [enum UserFlag] on their account.[br]
+	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]has_flag[/code] ([bool])[br]
 	static func current_user_has_flag(p_flag: UserFlag) -> Dictionary:
 		return IDGSUser.current_user_has_flag(p_flag)
 
@@ -356,37 +375,58 @@ class User:
 ## Handles relationships in Discord GameSDK
 ## @tutorial(Sample project): https://github.com/3ddelano/discord-game-sdk-godot/
 class Relationship:
+	## Fires at initialization when Discord has cached a snapshot of the current status of all your relationships.
+	## Wait for this to fire before calling [method filter].
+	signal refresh
+	## Fires when a relationship in the cached list changes, like an updated presence or user attribute.[br]
+	## [param relationship]: [DiscordRelationshipData]
+	signal relationship_update(relationship: DiscordRelationshipData)
+
+
 	enum RelationshipType {
-		None,
-		Friend,
-		Blocked,
-		PendingIncoming,
-		PendingOutgoing,
-		Implicit,
+		None, ## User has no intrinsic relationship
+		Friend, ## User is a friend
+		Blocked, ## User is blocked
+		PendingIncoming, ## User has a pending incoming friend request to connected user
+		PendingOutgoing, ## Current user has a pending outgoing friend request to user
+		Implicit, ## User is not friends, but interacts with current user often (frequency + recency)
 	}
 
+
+	## Get the active instance of the Discord Relationship singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
 		return IDGSRelationship
 
-#	static func count() -> Dictionary:
-#		return IDGSRelationship.count()
-
-	static func filter(p_filter_func: Callable) -> Array[Dictionary]:
+	## Filters a user's relationship list by a boolean condition.[br]
+	## [param p_filter_func] - A function that is passed a [DiscordRelationshipData] and must return a [bool][br]
+	## [param returns]: [Array][[DiscordRelationshipData]][br]
+	## [b]Note:[/b] Beforing calling this method, you need to wait for the [signal refresh] signal to fire. This is your indicator that Discord has successfully taken a snapshot of the state of all your relationships at a given moment. Use this to build your initial social graph for a user.[br]
+	## Example
+	## [codeblock]
+	## func _ready():
+	##     DiscordSDK.Relationship.refresh.connect(func ():
+	##         var relationships: Array[DiscordRelationshipData] = DiscordSDK.Relationship.filter(func (relationship: DiscordRelationshipData):
+	##             return relationship.type == DiscordSDK.Relationship.RelationshipType.Friend
+	##         )
+	##         var count = len(relationships)
+	##         print("Relationship: filter: count=" + str(count))
+	##     )
+	## [/codeblock]
+	static func filter(p_filter_func: Callable) -> Array[DiscordRelationshipData]:
 		# Workaround for filtering Relationship since I was unable to get Callable to work in GDExtension
 		# So we load all the relationships and filter them in GDScript
 		IDGSRelationship.filter()
-		var relationships: Array[Dictionary] = []
+		var relationships: Array[DiscordRelationshipData] = []
 		var count: int = IDGSRelationship.count().count
 
 		for i in range(count):
-			var relationship = IDGSRelationship.get_at(i).relationship
+			var relationship: DiscordRelationshipData = IDGSRelationship.get_at(i).relationship
 			if not p_filter_func.call(relationship):
 				continue
 			relationships.append(relationship)
 		return relationships
 
+	## Get the relationship between the current user and a given user by user id.[br]
+	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]relationship[/code] ([DiscordRelationshipData])
 	static func get_user(p_user_id: int) -> Dictionary:
 		return IDGSRelationship.get_user(p_user_id)
-
-#	static func get_at(p_index: int) -> Dictionary:
-#		return IDGSRelationship.get_at(p_index)

@@ -38,7 +38,7 @@ func reset():
 	_reset_activity()
 
 
-func set_activity(p_activity: Dictionary):
+func set_activity(p_activity: DiscordActivityData):
 	activity = p_activity
 	_update_activity()
 

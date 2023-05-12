@@ -2,7 +2,9 @@
 class_name DiscordUserData
 extends _DiscordDataClass
 
+
 func _init(): super._init("DiscordUserData")
+
 
 ## The user's ID.
 var id: int

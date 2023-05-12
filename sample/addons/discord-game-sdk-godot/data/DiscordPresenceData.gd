@@ -1,10 +1,15 @@
+## Represents a Discord user's presence
 class_name DiscordPresenceData
 extends _DiscordDataClass
+
 
 func _init(): super._init("DiscordPresenceData")
 
 
+## The user's current online status.
+## One of [DiscordSDK.Status].
 var status: DiscordSDK.Status
+## The user's current activity.
 var activity: DiscordActivityData
 
 
