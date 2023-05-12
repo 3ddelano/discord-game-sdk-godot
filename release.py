@@ -50,7 +50,7 @@ def release():
     copytree(addon_folder, "tmp/addons/")
     shutil.copy2("README.md", f"tmp/addons/{addon_name}")
     shutil.copy2("LICENSE.md", f"tmp/addons/{addon_name}")
-    file_name = f"{addon_name}-v{version}.zip"
+    file_name = f"{addon_name}_v{version}.zip"
     make_zip_archive("tmp/addons", file_name)
     shutil.rmtree("tmp")
     return file_name
