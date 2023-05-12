@@ -28,13 +28,14 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
     EDiscordResult res = DiscordCreate(DISCORD_VERSION, &params, &_core);
     if (res != DiscordResult_Ok || !_core) {
         UtilityFunctions::printerr("\nDGS Error: Got Result: ", static_cast<int>(res), "\n\tat: ", __func__, " (", __FILE__, ":", __LINE__, ") ", "\n ");
+    }else {
+        // Loads the current user
+        get_user_manager();
+
+        // Loads the relationships
+        get_relationship_manager();
     }
 
-    // Loads the current user
-    get_user_manager();
-
-    // Loads the relationships
-    get_relationship_manager();
 
     return static_cast<int>(res);
 }
