@@ -8,21 +8,17 @@ bin_folder = "sample/addons/discord-game-sdk-godot/bin"
 
 discord_game_sdk_folder = "thirdparty/discord_game_sdk/"
 
-# For reference:
-# - CCFLAGS are compilation flags shared between C and C++
-# - CFLAGS are for C-specific compilation flags
-# - CXXFLAGS are for C++-specific compilation flags
-# - CPPFLAGS are for pre-processor flags
-# - CPPDEFINES are for pre-processor defines
-# - LINKFLAGS are for linking flags
-
 # Add source files
 env.Append(CPPPATH=["src/", discord_game_sdk_folder + "c/"])
 sources = Glob("src/*.cpp")
 
+env.Append(LIBPATH=[discord_game_sdk_folder + "lib/x86_64/"])
 if env["platform"] == "windows":
     env.Append(LIBS=["discord_game_sdk.dll"])
-env.Append(LIBPATH=[discord_game_sdk_folder + "lib/x86_64/"])
+if env["platform"] == "linux":
+    env.Append(LIBS=["discord_game_sdk"])
+if env["platform"] == "macos":
+    env.Append(LIBS=["discord_game_sdk"])
 
 
 if env["platform"] == "macos":
