@@ -98,7 +98,7 @@ jobs:
             - name: Copy extra files to addon folder
               shell: sh
               run: |
-                  cp --no-clobber '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE.md' '${{ github.workspace }}/sample/addons/discord-game-sdk-godot/'
+                  cp -n '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE.md' '${{ github.workspace }}/sample/addons/discord-game-sdk-godot/'
 
             - name: Upload artifact
               uses: actions/upload-artifact@v3
