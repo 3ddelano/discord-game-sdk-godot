@@ -1,9 +1,12 @@
-## Copyright (c) 2022-present Delano Lourenco
-## https://github.com/3ddelano/dataclasses-godot
-## MIT License
-## See License.md
+# Copyright (c) 2022-present Delano Lourenco
+# https://github.com/3ddelano/dataclasses-godot
+# MIT License
+# See License.md
 
-class_name Dataclass extends RefCounted
+## The main class of the Dataclasses Godot plugin.
+## @tutorial(Dataclasses Godot): https://github.com/3ddelano/dataclasses-godot
+class_name Dataclass
+extends RefCounted
 
 const __DEFAULT_OPTIONS__ = {
 	# Whether to sort properties when printing
@@ -74,7 +77,7 @@ func get_class() -> String:
 
 func __get_props() -> Array:
 	var all_props = get_property_list()
-	all_props = all_props.slice(3, all_props.size() - 4)
+	all_props = all_props.slice(3, all_props.size() - 5)
 
 	if __options__.sort_keys:
 		all_props.sort_custom(func sort_ascending(a, b):

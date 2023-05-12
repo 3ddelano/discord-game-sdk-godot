@@ -10,7 +10,7 @@ void IDGSCore::_bind_methods() {
     DGS_CORE_BIND_METHOD(destroy);
     DGS_CORE_BIND_METHOD(set_log_level);
 
-    ADD_SIGNAL(MethodInfo("discord_log", PropertyInfo(Variant::DICTIONARY, "log_msg")));
+    ADD_SIGNAL(MethodInfo("discord_log", PropertyInfo(Variant::OBJECT, "log_msg")));
 }
 
 int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
@@ -28,14 +28,13 @@ int IDGSCore::create_core(int64_t p_client_id, uint64_t p_flags) {
     EDiscordResult res = DiscordCreate(DISCORD_VERSION, &params, &_core);
     if (res != DiscordResult_Ok || !_core) {
         UtilityFunctions::printerr("\nDGS Error: Got Result: ", static_cast<int>(res), "\n\tat: ", __func__, " (", __FILE__, ":", __LINE__, ") ", "\n ");
-    }else {
+    } else {
         // Loads the current user
         get_user_manager();
 
         // Loads the relationships
         get_relationship_manager();
     }
-
 
     return static_cast<int>(res);
 }
@@ -51,10 +50,7 @@ void IDGSCore::set_log_level(int p_level) {
     ERR_FAIL_COND(_core == nullptr);
 
     _core->set_log_hook(_core, static_cast<EDiscordLogLevel>(p_level), nullptr, [](void* data, EDiscordLogLevel level, const char* msg) {
-        Dictionary ret;
-        ret["level"] = static_cast<int>(level);
-        ret["message"] = String(msg);
-        IDGSCore::get_singleton()->emit_signal("discord_log", ret);
+        IDGSCore::get_singleton()->emit_signal("discord_log", dgs_discord_log_message_to_obj(level, msg));
     });
 }
 

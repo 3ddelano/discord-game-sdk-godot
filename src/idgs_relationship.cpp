@@ -11,7 +11,7 @@ void IDGSRelationship::_bind_methods() {
     DGS_RELATIONSHIP_BIND_METHOD(get_at);
 
     ADD_SIGNAL(MethodInfo("refresh"));
-    ADD_SIGNAL(MethodInfo("relationship_update", PropertyInfo(Variant::DICTIONARY, "relationship")));
+    ADD_SIGNAL(MethodInfo("relationship_update", PropertyInfo(Variant::OBJECT, "relationship")));
 }
 
 // void IDGSRelationship::filter(Callable p_filter_func) {
@@ -21,11 +21,7 @@ void IDGSRelationship::filter() {
 
     relationship_manager->filter(
         relationship_manager, nullptr, [](void* data, DiscordRelationship* relationship) -> bool {
-            // Callable* filter_func = (Callable*)data;
-            // Dictionary relationship_dict = dgs_discord_relationship_to_dict(relationship);
-            // Variant ret = filter_func->call(relationship_dict);
-            // bool ret_bool = ret;
-            // return ret;
+            // Hacky fix: We load all the relationships in GDextension and do the filtering in GDScript because I am unable to get Callable to work in GDextension
             return true;
         });
     return;
@@ -56,7 +52,7 @@ Dictionary IDGSRelationship::get_user(int64_t p_user_id) {
     EDiscordResult res = relationship_manager->get(relationship_manager, p_user_id, &relationship);
 
     ret["result"] = static_cast<int>(res);
-    ret["relationship"] = dgs_discord_relationship_to_dict(&relationship);
+    ret["relationship"] = dgs_discord_relationship_to_obj(&relationship);
     return ret;
 }
 
@@ -70,7 +66,7 @@ Dictionary IDGSRelationship::get_at(int p_index) {
     DiscordRelationship relationship{};
     EDiscordResult res = relationship_manager->get_at(relationship_manager, p_index, &relationship);
     ret["result"] = static_cast<int>(res);
-    ret["relationship"] = dgs_discord_relationship_to_dict(&relationship);
+    ret["relationship"] = dgs_discord_relationship_to_obj(&relationship);
     return ret;
 }
 

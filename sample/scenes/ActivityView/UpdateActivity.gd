@@ -21,7 +21,8 @@ extends PanelContainer
 
 @onready var _update_activity_btn: Button = %UpdateActivityBtn
 @onready var _clear_activity_btn: Button = %ClearActivityBtn
-var _activity_data = DiscordSDK.Activity.ActivityData.new()
+
+var _activity_data = DiscordActivityData.new()
 
 
 func _on_update_activity_btn_pressed():

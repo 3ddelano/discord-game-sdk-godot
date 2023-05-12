@@ -12,10 +12,10 @@ void IDGSOverlay::_bind_methods() {
     DGS_OVERLAY_BIND_METHOD(open_guild_invite);
     DGS_OVERLAY_BIND_METHOD(open_voice_settings);
 
-    ADD_SIGNAL(MethodInfo("set_locked_cb", PropertyInfo(Variant::BOOL, "result")));
-    ADD_SIGNAL(MethodInfo("open_activity_invite_cb", PropertyInfo(Variant::BOOL, "result")));
-    ADD_SIGNAL(MethodInfo("open_guild_invite_cb", PropertyInfo(Variant::BOOL, "result")));
-    ADD_SIGNAL(MethodInfo("open_voice_settings_cb", PropertyInfo(Variant::BOOL, "result")));
+    ADD_SIGNAL(MethodInfo("set_locked_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("open_activity_invite_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("open_guild_invite_cb", PropertyInfo(Variant::INT, "result")));
+    ADD_SIGNAL(MethodInfo("open_voice_settings_cb", PropertyInfo(Variant::INT, "result")));
 
     ADD_SIGNAL(MethodInfo("toggle", PropertyInfo(Variant::BOOL, "locked")));
 }

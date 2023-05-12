@@ -36,7 +36,7 @@ class IDGSRelationship : public RefCounted {
     }
 
     static void on_relationship_update(void* data, DiscordRelationship* relationship) {
-        IDGSRelationship::get_singleton()->emit_signal("relationship_update", dgs_discord_relationship_to_dict(relationship));
+        IDGSRelationship::get_singleton()->emit_signal("relationship_update", dgs_discord_relationship_to_obj(relationship));
     }
 
    protected:

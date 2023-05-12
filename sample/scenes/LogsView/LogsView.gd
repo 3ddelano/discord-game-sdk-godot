@@ -12,7 +12,7 @@ func _ready() -> void:
 	)
 
 
-func _on_discord_log(msg: Dictionary):
+func _on_discord_log(msg: DiscordLogData):
 	log_msg(msg.level, msg.message)
 
 

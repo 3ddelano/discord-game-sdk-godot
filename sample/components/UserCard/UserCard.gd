@@ -48,17 +48,17 @@ func set_status(p_status: int):
 	_update_status()
 
 
-func set_user(p_user: Dictionary):
+func set_user(p_user: DiscordUserData):
 	user = p_user
+	reset()
 
-	if user == null:
-		reset()
-		return
+	username_label.text = user["username"]
+	if not user["discriminator"].is_empty():
+		username_label.text += "#" + user["discriminator"]
 
-	username_label.text = user["username"] + "#" + user["discriminator"]
 	bot_tag.visible = user["bot"]
 	id_label.text = str(user["id"])
-	if user["avatar"]:
+	if not user["avatar"].is_empty():
 		avatar.visible = true
 		avatar.fetch_image("https://cdn.discordapp.com/avatars/%s/%s.png" % [str(user["id"]), user["avatar"]])
 	else:

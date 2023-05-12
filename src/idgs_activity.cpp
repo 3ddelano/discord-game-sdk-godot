@@ -21,8 +21,8 @@ void IDGSActivity::_bind_methods() {
 
     ADD_SIGNAL(MethodInfo("join", PropertyInfo(Variant::STRING, "join_secret")));
     ADD_SIGNAL(MethodInfo("spectate", PropertyInfo(Variant::STRING, "spectate_secret")));
-    ADD_SIGNAL(MethodInfo("join_request", PropertyInfo(Variant::DICTIONARY, "user")));
-    ADD_SIGNAL(MethodInfo("invite", PropertyInfo(Variant::DICTIONARY, "data")));
+    ADD_SIGNAL(MethodInfo("join_request", PropertyInfo(Variant::OBJECT, "user")));
+    ADD_SIGNAL(MethodInfo("invite", PropertyInfo(Variant::INT, "type"), PropertyInfo(Variant::OBJECT, "user"), PropertyInfo(Variant::OBJECT, "activity")));
 }
 
 int IDGSActivity::register_command(const String& p_command) {

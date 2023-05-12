@@ -25,7 +25,7 @@ Dictionary IDGSUser::get_current_user() {
     EDiscordResult res = userManager->get_current_user(userManager, &current_user);
 
     ret["result"] = static_cast<int>(res);
-    ret["user"] = dgs_discord_user_to_dict(&current_user);
+    ret["user"] = dgs_discord_user_to_obj(&current_user);
     return ret;
 }
 
@@ -36,7 +36,7 @@ void IDGSUser::get_user(int64_t user_id) {
     userManager->get_user(userManager, user_id, nullptr, [](void* data, EDiscordResult result, DiscordUser* user) {
         Dictionary ret;
         ret["result"] = static_cast<int>(result);
-        ret["user"] = dgs_discord_user_to_dict(user);
+        ret["user"] = dgs_discord_user_to_obj(user);
         IDGSUser::get_singleton()->emit_signal("get_user_cb", ret);
     });
 }
