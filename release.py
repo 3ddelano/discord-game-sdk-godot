@@ -1,10 +1,8 @@
-import zipfile
 import shutil
 import os
 
 addon_folder = "sample/addons/"
 addon_name = "discord-game-sdk-godot"
-keep_only_release_libs = True
 exclude_patterns = [".lib", ".exp", ".ilk", ".pdb", ".obj", ".os"]
 
 
@@ -22,11 +20,8 @@ def copytree(src, dst, symlinks=False, ignore=None):
     if not os.path.exists(dst):
         os.makedirs(dst)
     for item in os.listdir(src):
-        try:
-            if item == ".git" or item.index("debug") > -1:
-                continue
-        except ValueError:
-            pass
+        if item == ".git":
+            continue
         s = os.path.join(src, item)
         d = os.path.join(dst, item)
         if os.path.isdir(s):
