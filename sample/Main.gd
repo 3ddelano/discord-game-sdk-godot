@@ -17,14 +17,12 @@ func _ready() -> void:
 		Store.log_error("APPLICATION_ID is not set in Main.gd")
 		return
 
-	# Boilerplate code
 	# Setup Discord GameSDK
 	var create_res = DiscordSDK.Core.create(CLIENT_ID)
 	if DiscordSDK.is_error(create_res):
-		Store.log_error("Failed to create DiscordGameSDK: Got result %s" % DiscordSDK.result_str(create_res))
+		Store.log_error("Failed to create Discord GameSDK: Got result %s" % DiscordSDK.result_str(create_res))
 		return
-	Store.log_info("Initialzized DiscordGameSDK!")
-	# End boilerplate
+	Store.log_info("Core: create: Ok - Initialized Discord GameSDK")
 
 	Store.discord_create.emit()
 
@@ -42,8 +40,8 @@ func _on_tab_pressed():
 	print("Tab key pressed")
 
 	# ----- Activity
-#	print("----- Activity: register_command: ", DiscordSDK.Activity.register_command("https://google.com"))
-#	print("----- Activity: register_steam: ", DiscordSDK.Activity.register_steam(12345))
+#	print("Activity: register_command: ", DiscordSDK.Activity.register_command("https://google.com"))
+#	print("Activity: register_steam: ", DiscordSDK.Activity.register_steam(12345))
 #
 #	var activity = DiscordSDK.Activity.ActivityData.new()
 #	activity.application_id = APPLICATION_ID
@@ -64,16 +62,16 @@ func _on_tab_pressed():
 #
 #	print(activity)
 #	DiscordSDK.Activity.update_activity(activity)
-#	print("----- Activity: update_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().update_activity_cb))
+#	print("Activity: update_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().update_activity_cb))
 
 #	await get_tree().create_timer(3).timeout
 #	DiscordSDK.Activity.clear_activity()
-#	print("----- Activity: clear_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().clear_activity_cb))
+#	print("Activity: clear_activity: result::", DiscordSDK.result_str(await DiscordSDK.Activity.get_instance().clear_activity_cb))
 
 
 	# ----- Overlay
-#	print("----- Overlay: is_enabled: ", DiscordSDK.Overlay.is_enabled())
-#	print("----- Overlay: is_locked: ", DiscordSDK.Overlay.is_locked())
+#	print("Overlay: is_enabled: ", DiscordSDK.Overlay.is_enabled())
+#	print("Overlay: is_locked: ", DiscordSDK.Overlay.is_locked())
 
 #	DiscordSDK.Overlay.open_activity_invite(DiscordSDK.Activity.ActionType.Join)
 #	print("---- Overlay: open_activity_invite: result::", DiscordSDK.result_str(await DiscordSDK.Overlay.get_instance().open_activity_invite_cb))

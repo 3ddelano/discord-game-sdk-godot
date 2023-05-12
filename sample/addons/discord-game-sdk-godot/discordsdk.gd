@@ -77,6 +77,7 @@ static func result_str(p_result) -> String:
 	var idx := Result.values().find(p_result)
 	return Result.keys()[idx]
 
+
 ## Returns whether the Discord GameSDK result is error or not.
 ## `p_result` can either be an integer representing the Result enum or a Dictionary/Object that has a `result` key.
 static func is_error(p_result) -> bool:

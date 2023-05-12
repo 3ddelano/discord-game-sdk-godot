@@ -21,7 +21,7 @@ func _on_load_all_btn_pressed():
 		return true
 	)
 	var count = len(relationships)
-	Store.log_info("----- Relationship: filter: count=" + str(count))
+	Store.log_info("Relationship: filter: count=" + str(count))
 
 	_remove_all_cards()
 	_count_label.text = "Count: " + str(count)

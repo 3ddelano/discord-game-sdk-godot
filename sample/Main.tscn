@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7i5mvhud882g"]
+[gd_scene load_steps=16 format=3 uid="uid://c7i5mvhud882g"]
 
 [ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_6ynui"]
 [ext_resource type="PackedScene" uid="uid://c7a4wvc65f57" path="res://scenes/ActivityView/ActivityView.tscn" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://citje3bq1h0jh" path="res://scenes/OverlayView/OverlayView.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bmd75bv6ub6o6" path="res://scenes/RelationshipsView/RelationshipsView.tscn" id="11"]
+[ext_resource type="Script" path="res://scripts/Version.gd" id="12_on6la"]
 [ext_resource type="Script" path="res://scenes/NotificationsView/NotificationsView.gd" id="14_v0jrb"]
 
 [sub_resource type="FontFile" id="FontFile_y1yfp"]
@@ -198,13 +199,23 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MC/ViewManager/Footer"]
+[node name="Version" type="Label" parent="MC/ViewManager/Footer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6ynui")
+theme_override_font_sizes/font_size = 12
+text = "v0.0.0"
+script = ExtResource("12_on6la")
+
+[node name="VS" type="VSeparator" parent="MC/ViewManager/Footer"]
+layout_mode = 2
+
+[node name="3ddelano" type="Label" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6ynui")
 theme_override_font_sizes/font_size = 12
 text = "3ddelano"
 
-[node name="VS" type="VSeparator" parent="MC/ViewManager/Footer"]
+[node name="VS2" type="VSeparator" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 
 [node name="GithubBtn" type="LinkButton" parent="MC/ViewManager/Footer"]
@@ -215,10 +226,10 @@ theme_override_font_sizes/font_size = 12
 text = "Github Repo"
 uri = "https://github.com/3ddelano/discord-game-sdk-godot"
 
-[node name="VS2" type="VSeparator" parent="MC/ViewManager/Footer"]
+[node name="VS3" type="VSeparator" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MC/ViewManager/Footer"]
+[node name="Disclaimer" type="Label" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6ynui")
 theme_override_font_sizes/font_size = 12

@@ -9,13 +9,16 @@ func _ready() -> void:
 
 
 func _on_join(join_secret: String):
-	print("----- Activity Join Event: ", join_secret)
+	Store.log_info("Activity Join Event: join_secret=" + str(join_secret))
+
 
 func _on_spectate(spectate_secret: String):
-	print("----- Activity Spectate Event: ", spectate_secret)
+	Store.log_info("Activity Spectate Event: spectate_secret=" + str(spectate_secret))
+
 
 func _on_join_request(user: Dictionary):
-	print("----- Activity Join Request Event: ", user)
+	Store.log_info("Activity Join Request Event: user=" + str(user))
+
 
 func _on_invite(type: DiscordSDK.Activity.ActionType, user: Dictionary, activity: Dictionary):
-	prints("----- Activity Invite Event:", type, user, activity)
+	Store.log_info("Activity Invite Event: type=" + str(type) + " user=" + str(user) + " activity=" + str(activity))

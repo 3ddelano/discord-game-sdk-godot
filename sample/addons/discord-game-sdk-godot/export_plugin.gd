@@ -5,8 +5,10 @@
 @tool
 extends EditorExportPlugin
 
+
 func _get_name() -> String:
 	return "Discord Game SDK Godot"
+
 
 func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int):
 	var target_platform = features[2]

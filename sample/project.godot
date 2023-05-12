@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Discord Game SDK Godot 4.x"
+config/name="Discord GameSDK Godot 4.x"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/bg_color=Color(0.345098, 0.396078, 0.94902, 1)

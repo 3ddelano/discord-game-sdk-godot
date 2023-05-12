@@ -24,7 +24,7 @@ extends PanelContainer
 var _activity_data = DiscordSDK.Activity.ActivityData.new()
 
 
-func _on_update_activity_btn():
+func _on_update_activity_btn_pressed():
 	_activity_data.type = _activity_type_optionbtn.get_selected_id()
 	_activity_data.application_id = int(_application_id_lineedit.text)
 	_activity_data.state = _state_lineedit.text
@@ -46,10 +46,10 @@ func _on_update_activity_btn():
 	DiscordSDK.Activity.update_activity(_activity_data)
 	DiscordSDK.Activity.get_instance().update_activity_cb.connect(func (res):
 		if DiscordSDK.is_error(res):
-			Store.log_error("----- Activity: update_activity: Error: " + DiscordSDK.result_str(res))
+			Store.log_error("Activity: update_activity: Error: " + DiscordSDK.result_str(res))
 			return
 
-		Store.log_info("Activity:update_activity:Ok")
+		Store.log_info("Activity: update_activity: Ok")
 	)
 
 
@@ -57,15 +57,16 @@ func _on_clear_activity_btn():
 	DiscordSDK.Activity.clear_activity()
 	DiscordSDK.Activity.get_instance().clear_activity_cb.connect(func (res):
 		if DiscordSDK.is_error(res):
-			Store.log_error("----- Activity: clear_activity: Error: " + DiscordSDK.result_str(res))
+			Store.log_error("Activity: clear_activity: Error: " + DiscordSDK.result_str(res))
 			return
 
-		Store.log_info("Activity:clear_activity:Ok")
+		Store.log_info("Activity: clear_activity: Ok")
 	)
 
 
 func _ready():
-	_update_activity_btn.pressed.connect(_on_update_activity_btn)
+	_update_activity_btn.pressed.connect(_on_update_activity_btn_pressed)
+	Store.discord_create.connect(_on_update_activity_btn_pressed)
 	_clear_activity_btn.pressed.connect(_on_clear_activity_btn)
 
 	Store.discord_create.connect(func ():

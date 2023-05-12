@@ -32,35 +32,35 @@ func _on_current_user_update():
 	var user_res = DiscordSDK.User.get_current_user()
 
 	if DiscordSDK.is_error(user_res):
-		Store.log_errror("----- User: get_current_user: Error: " + DiscordSDK.result_str(user_res))
+		Store.log_errror("User: get_current_user: Error: " + DiscordSDK.result_str(user_res))
 		return
 
 	var user = user_res.user
-	Store.log_info("----- User: get_current_user: Ok")
+	Store.log_info("User: get_current_user: Ok")
 
 	var premium_res = DiscordSDK.User.get_current_user_premium_type()
 	if DiscordSDK.is_error(premium_res):
-		Store.log_errror("----- User: get_current_user_premium_type: Error: " + DiscordSDK.result_str(premium_res))
+		Store.log_errror("User: get_current_user_premium_type: Error: " + DiscordSDK.result_str(premium_res))
 
 	var partner_flag_res = DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.Partner)
 	if DiscordSDK.is_error(partner_flag_res):
-		Store.log_errror("----- User: current_user_has_flag(Partner): Error: " + DiscordSDK.result_str(partner_flag_res))
+		Store.log_errror("User: current_user_has_flag(Partner): Error: " + DiscordSDK.result_str(partner_flag_res))
 
 	var hypesquad_flag_res = DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadEvents)
 	if DiscordSDK.is_error(hypesquad_flag_res):
-		Store.log_errror("----- User: current_user_has_flag(HypeSquadEvents): Error: " + DiscordSDK.result_str(hypesquad_flag_res))
+		Store.log_errror("User: current_user_has_flag(HypeSquadEvents): Error: " + DiscordSDK.result_str(hypesquad_flag_res))
 
 	var hype1_flag_res = DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadHouse1)
 	if DiscordSDK.is_error(hype1_flag_res):
-		Store.log_errror("----- User: current_user_has_flag(HypeSquadHouse1): Error: " + DiscordSDK.result_str(hype1_flag_res))
+		Store.log_errror("User: current_user_has_flag(HypeSquadHouse1): Error: " + DiscordSDK.result_str(hype1_flag_res))
 
 	var hype2_flag_res = DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadHouse2)
 	if DiscordSDK.is_error(hype2_flag_res):
-		Store.log_errror("----- User: current_user_has_flag(HypeSquadHouse2): Error: " + DiscordSDK.result_str(hype2_flag_res))
+		Store.log_errror("User: current_user_has_flag(HypeSquadHouse2): Error: " + DiscordSDK.result_str(hype2_flag_res))
 
 	var hype3_flag_res = DiscordSDK.User.current_user_has_flag(DiscordSDK.User.UserFlag.HypeSquadHouse3)
 	if DiscordSDK.is_error(hype3_flag_res):
-		Store.log_errror("----- User: current_user_has_flag(HypeSquadHouse3): Error: " + DiscordSDK.result_str(hype3_flag_res))
+		Store.log_errror("User: current_user_has_flag(HypeSquadHouse3): Error: " + DiscordSDK.result_str(hype3_flag_res))
 
 
 	_user_card.set_user(user)
