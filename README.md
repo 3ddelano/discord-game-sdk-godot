@@ -3,6 +3,7 @@ Discord GameSDK Godot 4.x
 <img alt="Project Logo" src="https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/logo.png" height="150">
 
 ### Unofficial Discord GameSDK wrapper for Godot Engine 4.x (includes demo project)
+> Discord GameSDK plugin for Godot 4.x using GDExtension
 
 <img alt="Godot4" src="https://img.shields.io/badge/-Godot 4.x-478CBF?style=for-the-badge&logo=godotengine&logoWidth=20&logoColor=white" />&nbsp;&nbsp;&nbsp;<img alt="Discord GameSDK 3.1.0" src="https://img.shields.io/badge/-Discord GameSDK 3.1.0-5865f2?style=for-the-badge&logo=discord&logoWidth=20&logoColor=white" />
 
@@ -86,7 +87,7 @@ It would be great if you could support the development of this project. You can 
 This is a regular plugin for `Godot 4.x`. To install the plugin follow the steps below:
 
 1. Goto the Releases section and download the [latest release](https://github.com/3ddelano/discord-game-sdk-godot/releases/latest) zip.
-2. Extract the zip file and copy the `addons/discord-game-sdk-godot` folder into the `addons/` folder of your project.
+2. Extract the zip file and copy the `discord-game-sdk-godot` folder into the `res://addons/` folder of your project. If the `res://addons/` folder does not exist, create one.
 3. Goto `Project->Project Settings->Plugins` and enable the `Discord GameSDK Godot 4.x` plugin by `3ddelano`.
 4. You can now use the plugin. Use the below example script or open the sample project:
    ```GDScript
@@ -120,15 +121,14 @@ This is a regular plugin for `Godot 4.x`. To install the plugin follow the steps
 - Discord application for your game (See [Get set up](https://discord.com/developers/docs/game-sdk/sdk-starter-guide#get-set-up)) (You need the `CLIENT_ID` from Discord Developer Portal)
 
 To develop this plugin locally, follow the below steps:
-1. Clone/Download the repository.
-
+1. Clone / Download the repository.
 2. Extract the `Discord GameSDK` zip downloaded from Discord Developer Portal, rename it to `discord_game_sdk` and paste it in the `thirdparty/` folder. Refer to the below folder structure.
    
    ![Folder Structure](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/discord_folder_structure.png)
 
-3. Follow the steps to generate the GDExtension bindings for C++ based on [this tutorial](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html#building-the-c-bindings). Now you should have dumped the GDextension API interface and built the `godot-cpp` library.
+3. Follow the steps to generate the GDExtension bindings for C++ based on [this tutorial](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html#building-the-c-bindings). After this you should have built the `godot-cpp` library successfully.
 
-4. Run the Setup script
+4. Run the setup script
    ```shell
    python3 setup.py
    ```
@@ -154,11 +154,12 @@ To develop this plugin locally, follow the below steps:
 
 > The sample Godot project is located in the **/sample** folder
 
-1. Clone/Download the repository.
-2. Download the [latest release](https://github.com/3ddelano/discord-game-sdk-godot/releases/latest) from the Releases section and replace the existing `/addons/discord-game-sdk-godot` with the one from the Release.
-3. Ensure that the `Discord GameSDK Godot 4.x` plugin is enabled in `Project->Project Settings->Plugins`.
-4. Ensure that the Discord desktop application is open.
-5. Run the `Main.tscn` scene.
+1. Clone / Download the repository.
+2. Delete the existing `addons/discord-game-sdk-godot` folder in the project.
+3. Download the [latest release](https://github.com/3ddelano/discord-game-sdk-godot/releases/latest) of the plugin from the Releases section. Then copy the `discord-game-sdk-godot` folder from the downloaded zip into the `addons/` folder of the sample project.
+4. Ensure that the `Discord GameSDK Godot 4.x` plugin is enabled in `Project->Project Settings->Plugins`.
+5. Ensure that the Discord desktop application is open.
+6. Run the `Main.tscn` scene.
 
 
 ## Documentation
