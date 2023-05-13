@@ -65,15 +65,15 @@ It would be great if you could support the development of this project. You can 
 
 ![User](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/user.png)
 
-## Overlay
+### Overlay
 
 ![Overlay](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/overlay_visible.png)
 
-## Activity
+### Activity
 
 ![Activity](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/activity.png)
 
-## Relationship
+### Relationship
 
 ![Relationship](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/relationship.png)
 
