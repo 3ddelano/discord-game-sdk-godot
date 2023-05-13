@@ -12,24 +12,48 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - identifier: linux-release
-                      name: Linux Release
+                    - identifier: linux-debug
+                      name: 🐧 Linux Debug
                       runner: ubuntu-20.04
-                      target: template_release
+                      target: template_debug
+                      dev_build: yes
                       platform: linux
                       arch: x86_64
-                    - identifier: windows-release
-                      name: Windows Release
-                      runner: windows-latest
+                    - identifier: linux-debug
+                      name: 🐧Linux Release
+                      runner: ubuntu-20.04
                       target: template_release
-                      platform: windows
+                      dev_build: no
+                      platform: linux
                       arch: x86_64
-                    - identifier: macos-release
-                      name: macOS (universal) Release
+                    - identifier: macos-debug
+                      name: 🍎 macOS (universal) Debug
                       runner: macos-latest
-                      target: template_release
+                      target: template_debug
+                      dev_build: yes
                       platform: macos
                       arch: universal
+                    - identifier: macos-release
+                      name: 🍎 macOS (universal) Release
+                      runner: macos-latest
+                      target: template_release
+                      dev_build: no
+                      platform: macos
+                      arch: universal
+                    - identifier: windows-debug
+                      name: 🏁 Windows Debug
+                      runner: windows-latest
+                      target: template_debug
+                      dev_build: yes
+                      platform: windows
+                      arch: x86_64
+                    - identifier: windows-release
+                      name: 🏁 Windows Release
+                      runner: windows-latest
+                      target: template_release
+                      dev_build: no
+                      platform: windows
+                      arch: x86_64
 
         steps:
             - name: Set up Python
@@ -88,7 +112,7 @@ jobs:
             - name: Compile extension
               shell: sh
               run: |
-                  scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}' dev_build=no
+                  scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}' dev_build='${{ matrix.dev_build }}'
 
             - name: (Windows) Delete compilation files
               if: ${{ matrix.platform == 'windows' }}
@@ -98,7 +122,7 @@ jobs:
             - name: Copy extra files to addon folder
               shell: sh
               run: |
-                  cp -n '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE.md' '${{ github.workspace }}/sample/addons/discord-game-sdk-godot/'
+                  cp -n '${{ github.workspace }}/README.md' '${{ github.workspace }}/CHANGELOG.md' '${{ github.workspace }}/LICENSE.md' '${{ github.workspace }}/sample/addons/discord-game-sdk-godot/'
 
             - name: Upload artifact
               uses: actions/upload-artifact@v3

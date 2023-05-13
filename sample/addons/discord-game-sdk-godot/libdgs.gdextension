@@ -3,13 +3,17 @@
 entry_symbol = "dgs_library_init"
 
 [libraries]
-linux.x86_64.debug = "bin/libdgs.linux.template_debug.dev.x86_64.so"
-linux.x86_64.release = "bin/libdgs.linux.template_release.x86_64.so"
-windows.x86_64.debug = "bin/libdgs.windows.template_debug.dev.x86_64.dll"
-windows.x86_64.release = "bin/libdgs.windows.template_release.x86_64.dll"
+linux.x86_64.debug = "res://addons/discord-game-sdk-godot/bin/libdgs.linux.template_debug.dev.x86_64.so"
+linux.x86_64.release = "res://addons/discord-game-sdk-godot/bin/libdgs.linux.template_release.x86_64.so"
+windows.x86_64.debug = "res://addons/discord-game-sdk-godot/bin/libdgs.windows.template_debug.dev.x86_64.dll"
+windows.x86_64.release = "res://addons/discord-game-sdk-godot/bin/libdgs.windows.template_release.x86_64.dll"
+macos.debug = "res://addons/discord-game-sdk-godot/bin/libdgs.macos.template_debug.dev.framework"
+macos.release = "res://addons/discord-game-sdk-godot/bin/libdgs.macos.template_release.framework"
 
 [dependencies]
-windows.debug.x86_64 = "bin/discord_game_sdk.dll"
-windows.release.x86_64 = "bin/discord_game_sdk.dll"
-linux.debug.x86_64 = "bin/libdiscord_game_sdk.so"
-linux.release.x86_64 = "bin/libdiscord_game_sdk.so"
+windows.debug.x86_64 = "res://addons/discord-game-sdk-godot/bin/discord_game_sdk.dll"
+windows.release.x86_64 = "res://addons/discord-game-sdk-godot/bin/discord_game_sdk.dll"
+linux.debug.x86_64 = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.so"
+linux.release.x86_64 = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.so"
+macos.debug = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.dylib"
+macos.release = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.dylib"

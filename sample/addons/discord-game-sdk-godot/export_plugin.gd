@@ -7,7 +7,7 @@ extends EditorExportPlugin
 
 
 func _get_name() -> String:
-	return "Discord Game SDK Godot"
+	return "Discord Game SDK Godot 4.x"
 
 
 func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int):

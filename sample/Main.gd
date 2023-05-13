@@ -21,6 +21,8 @@ func _ready() -> void:
 	var create_res = DiscordSDK.Core.create(CLIENT_ID)
 	if DiscordSDK.is_error(create_res):
 		Store.log_error("Failed to create Discord GameSDK: Got result %s" % DiscordSDK.result_str(create_res))
+		if create_res == DiscordSDK.Result.InternalError:
+			Store.log_error("Is the Discord desktop app running?")
 		return
 	Store.log_info("Core: create: Ok - Initialized Discord GameSDK")
 
