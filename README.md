@@ -1,6 +1,6 @@
 Discord GameSDK Godot 4.x
 =========================================
-<img alt="Project Logo" src="./_media/logo.png" height="150">
+<img alt="Project Logo" src="https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/logo.png" height="150">
 
 ### Unofficial Discord GameSDK wrapper for Godot Engine 4.x (includes demo project)
 
@@ -15,6 +15,7 @@ Discord GameSDK Godot 4.x
 - **[How does it work](#how-does-it-work)**
 - **[Support the project development](#support-the-project-development)**
 - **[Cross-platform support](#cross-platform-support)**
+- **[Screenshots](#screenshots)**
 - **[Installation](#installation)**
 - **[Development Setup](#development-setup)**
 - **[Documentation](#documentation)**
@@ -22,12 +23,17 @@ Discord GameSDK Godot 4.x
 
 ## Features
 
+- ✔️ Static type support
+- ✔️ In-engine documentation
+- ✔️ Uses signals for async events
+- ✔️ Cross-platform Windows, Linux, MacOS
+
 All features of the Discord GameSDK are supported and example provided in the sample project!
 
-- ✔️ User
-- ✔️ Activity
-- ✔️ Overlay (Doesn't support Vulkan renderer)
-- ✔️ Relationship
+- ✔️ User (Get current user, get user by id, etc)
+- ✔️ Activity (Update, clear, etc)
+- ✔️ Overlay (Open/close voice settings, guild invite, etc)
+- ✔️ Relationship (Load, filter, etc)
 
 
 ## How does it work
@@ -46,11 +52,30 @@ It would be great if you could support the development of this project. You can 
 
 ## Cross-platform support
 
-| Platform    | Supported   | Tested | Size in exported game |
-| ----------- | ----------- | ------ | --------------------- |
-| Windows x64 | ✔️           | ✔️      | 4 MB                  |
-| Linux x64   | ✔️           | ✔️      | 8 MB                  |
-| MacOS x64   | Coming Soon | ❌      | - MB                  |
+| Platform    | Supported | Tested | Size in exported game |
+| ----------- | --------- | ------ | --------------------- |
+| Windows x64 | ✔️         | ✔️      | 4 MB                  |
+| Linux x64   | ✔️         | ✔️      | 8 MB                  |
+| MacOS x64   | ✔️         | ❌      | - MB                  |
+
+
+## Screenshots
+
+### User
+
+![User](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/user.png)
+
+## Overlay
+
+![Overlay](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/overlay_visible.png)
+
+## Activity
+
+![Activity](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/activity.png)
+
+## Relationship
+
+![Relationship](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/relationship.png)
 
 
 ## Installation
@@ -79,7 +104,8 @@ This is a regular plugin for `Godot 4.x`. To install the plugin follow the steps
            return
        
        print("Initialzized Discord GameSDK!")
-   
+       # Now you can use the Discord GameSDK
+       # See the sample project for examples
 
    func _on_discord_log(log_msg: DiscordLogData):
        print(str(log_msg.level) + " | " + log_msg.message)
@@ -98,7 +124,7 @@ To develop this plugin locally, follow the below steps:
 
 2. Extract the `Discord GameSDK` zip downloaded from Discord Developer Portal, rename it to `discord_game_sdk` and paste it in the `thirdparty/` folder. Refer to the below folder structure.
    
-   <img src="./_media/discord_folder_structure.png">
+   ![Folder Structure](https://raw.githubusercontent.com/3ddelano/discord-game-sdk-godot/main/_media/discord_folder_structure.png)
 
 3. Follow the steps to generate the GDExtension bindings for C++ based on [this tutorial](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html#building-the-c-bindings). Now you should have dumped the GDextension API interface and built the `godot-cpp` library.
 
