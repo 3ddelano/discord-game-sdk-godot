@@ -1,8 +1,8 @@
 extends Control
 
 # Testing IDs
-@onready var CLIENT_ID := 928212232213520454 # Paste your own here
-@onready var APPLICATION_ID := 928212232213520454 # Paste your own here
+const CLIENT_ID := 928212232213520454 # Paste your own here
+const APPLICATION_ID := 928212232213520454 # Paste your own here
 
 @onready var views: VBoxContainer = %ViewManager
 

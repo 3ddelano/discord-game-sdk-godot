@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8bdr8wq658px"]
+[gd_scene load_steps=13 format=3 uid="uid://c8bdr8wq658px"]
 
 [ext_resource type="Script" path="res://components/UserCard/UserCard.gd" id="1_obskx"]
 [ext_resource type="PackedScene" uid="uid://djdt0ibec8g1k" path="res://components/NetworkImage/NetworkImage.tscn" id="2_jnnv2"]
 [ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="3_obwu3"]
 [ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="4_08m1x"]
+[ext_resource type="Script" path="res://components/UserCard/IdLabel.gd" id="4_oicnw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77p3p"]
 bg_color = Color(0.137255, 0.141176, 0.156863, 1)
@@ -209,12 +210,14 @@ text = "BOT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IdLabel" type="Label" parent="MC/VB/PC/VB"]
+[node name="IDLabel" type="Label" parent="MC/VB/PC/VB"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
 theme_override_fonts/font = ExtResource("3_obwu3")
 text = "Id"
+script = ExtResource("4_oicnw")
 
 [node name="PremiumLabel" type="Label" parent="MC/VB/PC/VB"]
 unique_name_in_owner = true

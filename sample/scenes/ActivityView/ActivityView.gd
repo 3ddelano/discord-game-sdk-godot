@@ -16,9 +16,9 @@ func _on_spectate(spectate_secret: String):
 	Store.log_info("Activity Spectate Event: spectate_secret=" + str(spectate_secret))
 
 
-func _on_join_request(user: Dictionary):
+func _on_join_request(user: DiscordUserData):
 	Store.log_info("Activity Join Request Event: user=" + str(user))
 
 
-func _on_invite(type: DiscordSDK.Activity.ActionType, user: Dictionary, activity: Dictionary):
+func _on_invite(type: DiscordSDK.Activity.ActionType, user: DiscordUserData, activity: DiscordActivityData):
 	Store.log_info("Activity Invite Event: type=" + str(type) + " user=" + str(user) + " activity=" + str(activity))

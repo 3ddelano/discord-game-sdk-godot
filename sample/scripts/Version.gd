@@ -1,6 +1,5 @@
 extends Label
 
-
 func _ready() -> void:
 	var config = ConfigFile.new()
 	var _err = config.load("res://addons/discord-game-sdk-godot/plugin.cfg")

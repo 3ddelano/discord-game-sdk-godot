@@ -9,8 +9,6 @@ var RelationshipCardScene = preload("res://components/RelationshipCard/Relations
 func _ready() -> void:
 	DiscordSDK.Relationship.get_instance().refresh.connect(func ():
 		_load_all_btn.pressed.connect(_on_load_all_btn_pressed)
-
-		print(DiscordSDK.Relationship.get_user(399904263389708290))
 	)
 
 

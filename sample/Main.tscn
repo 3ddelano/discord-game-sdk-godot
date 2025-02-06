@@ -199,6 +199,12 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
+[node name="Plugin" type="Label" parent="MC/ViewManager/Footer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6ynui")
+theme_override_font_sizes/font_size = 12
+text = "Plugin"
+
 [node name="Version" type="Label" parent="MC/ViewManager/Footer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6ynui")

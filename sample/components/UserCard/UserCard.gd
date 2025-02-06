@@ -15,10 +15,10 @@ var has_hype2 = false
 var has_hype3 = false
 
 
-@onready var avatar: NetworkImage = %Avatar
+@onready var avatar = %Avatar as NetworkImage
 @onready var username_label = %UsernameLabel
 @onready var bot_tag = %BotTag
-@onready var id_label = %IdLabel
+@onready var id_label = %IDLabel as IDLabel
 @onready var premium_label = %PremiumLabel
 @onready var flags_label = %FlagsLabel
 @onready var status_container = %Status
@@ -32,7 +32,7 @@ var has_hype3 = false
 func reset():
 	username_label.text = "Username#1000"
 	bot_tag.visible = true
-	id_label.text = "Id"
+	id_label.set_text_custom("Id")
 	avatar.reset()
 	_reset_status()
 	_reset_activity()
@@ -57,7 +57,7 @@ func set_user(p_user: DiscordUserData):
 		username_label.text += "#" + user["discriminator"]
 
 	bot_tag.visible = user["bot"]
-	id_label.text = str(user["id"])
+	id_label.set_text_custom(str(user["id"]))
 	if not user["avatar"].is_empty():
 		avatar.visible = true
 		avatar.fetch_image("https://cdn.discordapp.com/avatars/%s/%s.png" % [str(user["id"]), user["avatar"]])
