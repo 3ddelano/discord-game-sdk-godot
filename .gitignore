@@ -1,4 +1,6 @@
 # Godot logs
+.idea/
+compile_commands.json
 logs/
 
 .env

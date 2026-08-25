@@ -1,4 +1,4 @@
-#include "idgs_relationship.h"
+#include "../src/idgs_relationship.h"
 
 using namespace godot;
 

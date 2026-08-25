@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://rjivhq2c1j1w"]
 
-[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_so3el"]
-[ext_resource type="Script" path="res://scenes/UserView/CurrentUser.gd" id="3_fqukf"]
+[ext_resource type="FontFile" uid="uid://52lu7n0suxud" path="res://fonts/Roboto-Bold.ttf" id="2_so3el"]
+[ext_resource type="Script" uid="uid://bjcqat26a1ffw" path="res://scenes/UserView/CurrentUser.gd" id="3_fqukf"]
 [ext_resource type="PackedScene" uid="uid://c8bdr8wq658px" path="res://components/UserCard/UserCard.tscn" id="3_j1yxi"]
 [ext_resource type="PackedScene" uid="uid://djdt0ibec8g1k" path="res://components/NetworkImage/NetworkImage.tscn" id="3_x05yd"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="5_5espc"]
-[ext_resource type="Script" path="res://scenes/UserView/GetUser.gd" id="6_47s12"]
+[ext_resource type="Script" uid="uid://ceqj5qhbn376t" path="res://scenes/UserView/GetUser.gd" id="6_47s12"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c80jo"]
 content_margin_left = 16.0

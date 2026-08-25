@@ -1,14 +1,8 @@
 #pragma once
 
-void initialize_dgs_module();
-void uninitialize_dgs_module();
+#include <godot_cpp/core/class_db.hpp>
 
-#define DGS_REGISTER_SINGLETON(_var, _class) \
-    ClassDB::register_class<_class>();       \
-    _var = memnew(_class);                   \
-    Engine::get_singleton()                  \
-        ->register_singleton(#_class, _class::get_singleton());
+using namespace godot;
 
-#define DGS_DEREGISTER_SINGLETON(_var, _class)              \
-    Engine::get_singleton()->unregister_singleton(#_class); \
-    memdelete(_var);
+void initialize_dgs_module(ModuleInitializationLevel p_level);
+void uninitialize_dgs_module(ModuleInitializationLevel p_level);

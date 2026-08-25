@@ -62,7 +62,7 @@ func _on_open_voice_settings_btn_pressed():
 
 
 func _ready() -> void:
-	DiscordSDK.Overlay.get_instance().toggle.connect(_on_overlay_toggle)
+	#DiscordSDK.Overlay.get_instance().toggle.connect(_on_overlay_toggle)
 	Store.discord_create.connect(func ():
 		_check_booleans()
 	)

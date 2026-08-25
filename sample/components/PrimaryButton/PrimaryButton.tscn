@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr8kkwn42djaf"]
 
-[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_vlhym"]
+[ext_resource type="FontFile" uid="uid://dmnmqeyec3dax" path="res://fonts/Roboto-Regular.ttf" id="1_vlhym"]
 
 [sub_resource type="StyleBoxFlat" id="6"]
 content_margin_left = 16.0

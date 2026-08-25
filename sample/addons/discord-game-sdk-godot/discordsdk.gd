@@ -140,23 +140,25 @@ class Core:
 
 	## Get the active instance of the Discord Core singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
-		return IDGSCore
+		return null#IDGSCore
 
 	## Initializes the Discord GameSDK core.[br]
 	## [param p_client_id] - The Client ID of the Discord application (from Discord Developer Portal)[br]
 	## [param p_flags]: [enum CreateFlags] - The flags to initialize the Discord GameSDK with[br]
 	## returns: [enum DiscordSDK.Result]
 	static func create(p_client_id: int, p_flags := CreateFlags.NoRequireDiscord) -> Result:
-		return IDGSCore.create_core(p_client_id, p_flags)
+		return Result.InvalidGiftCode#IDGSCore.create_core(p_client_id, p_flags)
 
 	## Set the log level to receive Discord GameSDK messages.[br]
 	## [param p_min_level]: [enum LogLevel] - The minimum log level to receive
 	static func set_log_level(p_min_level: LogLevel) -> void:
-		IDGSCore.set_log_level(p_min_level)
+		#IDGSCore.set_log_level(p_min_level)
+		pass
 
 	## Destroys and shutsdown the Discord GameSDK.
 	static func destroy():
-		IDGSCore.destroy()
+		#IDGSCore.destroy()
+		pass
 
 
 ## Handles activities in Discord GameSDK
@@ -219,46 +221,46 @@ class Activity:
 
 	## Get the active instance of the Discord Activity singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
-		return IDGSActivity
+		return null#IDGSActivity
 
 	## Registers a command by which Discord can launch your game.
 	## This might be a custom protocol, like [code]my-awesome-game://[/code], or a path to an executable. It also supports any launch parameters that may be needed, like [code]game.exe --full-screen --no-hax[/code].[br]
 	## [param returns]: [enum DiscordSDK.Result]
 	static func register_command(p_command: String) -> Result:
-		return IDGSActivity.register_command(p_command)
+		return Result.InvalidGiftCode#IDGSActivity.register_command(p_command)
 
 	## Used if you are distributing this SDK on Steam. Registers your game's Steam app id for the protocol [code]steam://run-game-id/<id>[/code].[br]
 	## [param returns]: [enum DiscordSDK.Result]
 	static func register_steam(p_steam_id: int) -> Result:
-		return IDGSActivity.register_steam(p_steam_id)
+		return Result.InvalidGiftCode#IDGSActivity.register_steam(p_steam_id)
 
 	## Sets a user's presence in Discord to a new activity.
 	## This has a rate limit of 5 updates per 20 seconds.[br]
 	## This method returns via [signal update_activity_cb]
 	static func update_activity(p_activity: DiscordActivityData) -> void:
-		IDGSActivity.update_activity(p_activity)
+		pass#IDGSActivity.update_activity(p_activity)
 
 	## Clear's a user's presence in Discord to make it show nothing.[br]
 	## This method returns via [signal clear_activity_cb]
 	static func clear_activity() -> void:
-		IDGSActivity.clear_activity()
+		pass#IDGSActivity.clear_activity()
 
 	## Sends a reply to an Ask to Join request.[br]
 	## This method returns via [signal send_request_reply_cb]
 	static func send_request_reply(p_user_id: int, p_reply: JoinRequestReply) -> void:
-		IDGSActivity.send_request_reply(p_user_id, p_reply)
+		pass#IDGSActivity.send_request_reply(p_user_id, p_reply)
 
 	## Sends a game invite to a given user.
 	## If you do not have a valid activity with all the required fields, this call will error.[br]
 	## [param p_type]: [enum ActionType][br]
 	## This method returns via [signal send_invite_cb]
 	static func send_invite(p_user_id: int, p_type: ActionType, p_content: String) -> void:
-		IDGSActivity.send_invite(p_user_id, p_type, p_content)
+		pass#IDGSActivity.send_invite(p_user_id, p_type, p_content)
 
 	## Accepts a game invitation from a given userId.[br]
 	## This method returns via [signal accept_invite_cb]
 	static func accept_invite(p_user_id: int) -> void:
-		IDGSActivity.accept_invite(p_user_id)
+		pass#IDGSActivity.accept_invite(p_user_id)
 
 
 ## Handles the overlay in Discord GameSDK
@@ -283,41 +285,41 @@ class Overlay:
 
 	## Get the active instance of the Discord Overlay singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
-		return IDGSOverlay
+		return null#IDGSOverlay
 
 	## Check whether the user has the overlay enabled or disabled.
 	## If the overlay is disabled, all the functionality in this manager will still work. The calls will instead focus the Discord client and show the modal there instead.
 	static func is_enabled() -> bool:
-		return IDGSOverlay.is_enabled()
+		return false# IDGSOverlay.is_enabled()
 
 	## Check if the overlay is currently locked or unlocked
 	static func is_locked() -> bool:
-		return IDGSOverlay.is_locked()
+		return false#IDGSOverlay.is_locked()
 
 	## Locks or unlocks input in the overlay.
 	## Calling [code]set_locked(true)[/code] will also close any modals in the overlay or in-app from things like IAP purchase flows and disallow input.[br]
 	## This method returns via [signal set_locked_cb]
 	static func set_locked(p_locked: bool) -> void:
-		IDGSOverlay.set_locked(p_locked)
+		pass#IDGSOverlay.set_locked(p_locked)
 
 	## Opens the overlay modal for sending game invitations to users, channels, and servers.
 	## If you do not have a valid activity with all the required fields, this call will error[br]
 	## [param p_type]: [enum Activity.ActionType][br]
 	## This method returns via [signal open_activity_invite_cb]
 	static func open_activity_invite(p_type: Activity.ActionType) -> void:
-		IDGSOverlay.open_activity_invite(p_type)
+		pass#IDGSOverlay.open_activity_invite(p_type)
 
 	## Opens the overlay modal for joining a Discord guild, given its invite code.
 	## An invite code for a server may look something like [code]fortnite[/code] for a verified server — the full invite being [code]discord.gg/fortnite[/code] — or something like [code]FZY9TqW[/code] for a non-verified server, the full invite being [code]discord.gg/FZY9TqW[/code].[br]
 	## This method returns via [signal open_guild_invite_cb]
 	static func open_guild_invite(p_code: String) -> void:
-		IDGSOverlay.open_guild_invite(p_code)
+		pass#IDGSOverlay.open_guild_invite(p_code)
 
 	## Opens the overlay widget for voice settings for the currently connected application.
 	## These settings are unique to each user within the context of your application. That means that a user can have different favorite voice settings for each of their games![br]
 	## This method returns via [signal open_voice_settings_cb]
 	static func open_voice_settings() -> void:
-		IDGSOverlay.open_voice_settings()
+		pass#IDGSOverlay.open_voice_settings()
 
 
 ## Handles the user in Discord GameSDK
@@ -347,29 +349,29 @@ class User:
 
 	## Get the active instance of the Discord User singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
-		return IDGSUser
+		pass#return IDGSUser
 
 	## Fetch information about the currently connected user account.
 	## If you're interested in getting more detailed information about a user — for example, their email — check out our the GetCurrentUser API endpoint in the Discord Docs.[br]
 	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]user[/code] ([DiscordUserData])[br]
 	## [b]Note:[/b] Before calling this function, you'll need to wait for the [signal current_user_update] signal to fire.
 	static func get_current_user() -> Dictionary:
-		return IDGSUser.get_current_user()
+		return {}#return IDGSUser.get_current_user()
 
 	## Get user information for a given user id.[br]
 	## This method returns via [signal get_user_cb]
 	static func get_user(p_user_id: int) -> void:
-		IDGSUser.get_user(p_user_id)
+		pass#IDGSUser.get_user(p_user_id)
 
 	## Get the [enum PremiumType] for the currently connected user.[br]
 	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]premium_type[/code] ([PremiumType])[br]
 	static func get_current_user_premium_type() -> Dictionary:
-		return IDGSUser.get_current_user_premium_type()
+		return {}#IDGSUser.get_current_user_premium_type()
 
 	## See whether or not the current user has a certain [enum UserFlag] on their account.[br]
 	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]has_flag[/code] ([bool])[br]
 	static func current_user_has_flag(p_flag: UserFlag) -> Dictionary:
-		return IDGSUser.current_user_has_flag(p_flag)
+		return {}# IDGSUser.current_user_has_flag(p_flag)
 
 
 ## Handles relationships in Discord GameSDK
@@ -395,7 +397,7 @@ class Relationship:
 
 	## Get the active instance of the Discord Relationship singleton. [b]Use this when connecting signals.[/b]
 	static func get_instance():
-		return IDGSRelationship
+		return null#IDGSRelationship
 
 	## Filters a user's relationship list by a boolean condition.[br]
 	## [param p_filter_func] - A function that is passed a [DiscordRelationshipData] and must return a [bool][br]
@@ -415,18 +417,19 @@ class Relationship:
 	static func filter(p_filter_func: Callable) -> Array[DiscordRelationshipData]:
 		# Workaround for filtering Relationship since I was unable to get Callable to work in GDExtension
 		# So we load all the relationships and filter them in GDScript
-		IDGSRelationship.filter()
-		var relationships: Array[DiscordRelationshipData] = []
-		var count: int = IDGSRelationship.count().count
-
-		for i in range(count):
-			var relationship: DiscordRelationshipData = IDGSRelationship.get_at(i).relationship
-			if not p_filter_func.call(relationship):
-				continue
-			relationships.append(relationship)
-		return relationships
+		#IDGSRelationship.filter()
+		#var relationships: Array[DiscordRelationshipData] = []
+		#var count: int = IDGSRelationship.count().count
+#
+		#for i in range(count):
+			#var relationship: DiscordRelationshipData = IDGSRelationship.get_at(i).relationship
+			#if not p_filter_func.call(relationship):
+				#continue
+			#relationships.append(relationship)
+		#return relationships
+		return []
 
 	## Get the relationship between the current user and a given user by user id.[br]
 	## [param returns]: [Dictionary] with 2 keys [code]result[/code] ([enum DiscordSDK.Result]) and [code]relationship[/code] ([DiscordRelationshipData])
 	static func get_user(p_user_id: int) -> Dictionary:
-		return IDGSRelationship.get_user(p_user_id)
+		return {}#IDGSRelationship.get_user(p_user_id)

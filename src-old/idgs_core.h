@@ -26,11 +26,11 @@ namespace godot {
 class IDGSCore : public RefCounted {
     GDCLASS(IDGSCore, RefCounted)
 
-    static IDGSCore* singleton;
-    IDiscordCore* _core = nullptr;
+    static IDGSCore *singleton;
+    IDiscordCore *_core = nullptr;
 
-   public:
-    static IDGSCore* get_singleton();
+  public:
+    static IDGSCore *get_singleton();
     void tick();
     int create_core(int64_t client_id, uint64_t flags);
     void destroy();
@@ -39,25 +39,28 @@ class IDGSCore : public RefCounted {
     IDGSCore();
     ~IDGSCore();
 
-    static IDiscordUserManager* get_user_manager() {
-        IDiscordCore* core = IDGSCore::get_singleton()->_core;
+    static IDiscordUserManager *get_user_manager() {
+        IDiscordCore *core = IDGSCore::get_singleton()->_core;
         return IDGSCore::get_singleton()->_core->get_user_manager(IDGSCore::get_singleton()->_core);
     };
-    static IDiscordActivityManager* get_activity_manager() {
-        IDiscordCore* core = IDGSCore::get_singleton()->_core;
+
+    static IDiscordActivityManager *get_activity_manager() {
+        IDiscordCore *core = IDGSCore::get_singleton()->_core;
         return IDGSCore::get_singleton()->_core->get_activity_manager(IDGSCore::get_singleton()->_core);
     };
-    static IDiscordRelationshipManager* get_relationship_manager() {
-        IDiscordCore* core = IDGSCore::get_singleton()->_core;
+
+    static IDiscordRelationshipManager *get_relationship_manager() {
+        IDiscordCore *core = IDGSCore::get_singleton()->_core;
         return IDGSCore::get_singleton()->_core->get_relationship_manager(IDGSCore::get_singleton()->_core);
     };
-    static IDiscordOverlayManager* get_overlay_manager() {
-        IDiscordCore* core = IDGSCore::get_singleton()->_core;
+
+    static IDiscordOverlayManager *get_overlay_manager() {
+        IDiscordCore *core = IDGSCore::get_singleton()->_core;
         return IDGSCore::get_singleton()->_core->get_overlay_manager(IDGSCore::get_singleton()->_core);
     };
 
-   protected:
+  protected:
     static void _bind_methods();
 };
 
-}  // namespace godot
+} // namespace godot

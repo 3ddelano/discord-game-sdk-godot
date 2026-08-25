@@ -2,7 +2,7 @@ extends Node
 
 
 func _process(_delta: float):
-	IDGSCore.tick()
+	pass#IDGSCore.tick()
 
 
 func _notification(what: int) -> void:

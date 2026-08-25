@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7a4wvc65f57"]
 
-[ext_resource type="Script" path="res://scenes/ActivityView/ActivityView.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_t4xsa"]
-[ext_resource type="Script" path="res://scenes/ActivityView/RegisterCommand.gd" id="3_pkuod"]
+[ext_resource type="Script" uid="uid://0hpoxeblbxvo" path="res://scenes/ActivityView/ActivityView.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://52lu7n0suxud" path="res://fonts/Roboto-Bold.ttf" id="2_t4xsa"]
+[ext_resource type="Script" uid="uid://mlg1vp4pnnyr" path="res://scenes/ActivityView/RegisterCommand.gd" id="3_pkuod"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="5"]
-[ext_resource type="Script" path="res://scenes/ActivityView/RegisterSteam.gd" id="5_jlrfh"]
-[ext_resource type="Script" path="res://scenes/ActivityView/UpdateActivity.gd" id="6_62yea"]
+[ext_resource type="Script" uid="uid://crbbva80cg6el" path="res://scenes/ActivityView/RegisterSteam.gd" id="5_jlrfh"]
+[ext_resource type="Script" uid="uid://dlduuxd65kedf" path="res://scenes/ActivityView/UpdateActivity.gd" id="6_62yea"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtb8l"]
 content_margin_left = 16.0

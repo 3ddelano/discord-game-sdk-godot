@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmd75bv6ub6o6"]
 
-[ext_resource type="Script" path="res://scenes/RelationshipsView/RelationshipsView.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_sx6pr"]
+[ext_resource type="Script" uid="uid://dxn4ktjs2iofj" path="res://scenes/RelationshipsView/RelationshipsView.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://52lu7n0suxud" path="res://fonts/Roboto-Bold.ttf" id="2_sx6pr"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="3_bv7vc"]
-[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="4_n2iak"]
+[ext_resource type="FontFile" uid="uid://dmnmqeyec3dax" path="res://fonts/Roboto-Regular.ttf" id="4_n2iak"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrnem"]
 content_margin_left = 16.0

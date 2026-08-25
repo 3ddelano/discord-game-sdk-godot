@@ -5,11 +5,12 @@ extends VBoxContainer
 
 
 func _ready() -> void:
-	DiscordSDK.Core.get_instance().discord_log.connect(_on_discord_log)
+	#DiscordSDK.Core.get_instance().discord_log.connect(_on_discord_log)
 
-	Store.discord_create.connect(func ():
-		DiscordSDK.Core.set_log_level(DiscordSDK.Core.LogLevel.Debug)
-	)
+	#Store.discord_create.connect(func ():
+	#	DiscordSDK.Core.set_log_level(DiscordSDK.Core.LogLevel.Debug)
+	#)
+	pass
 
 
 func _on_discord_log(msg: DiscordLogData):

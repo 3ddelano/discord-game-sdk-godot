@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl2qvlvdhn2iw"]
 
-[ext_resource type="Script" path="res://scenes/LogsView/LogsView.gd" id="2"]
-[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="2_gnrce"]
-[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="3_om3id"]
+[ext_resource type="Script" uid="uid://di22ihvtcl144" path="res://scenes/LogsView/LogsView.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://dmnmqeyec3dax" path="res://fonts/Roboto-Regular.ttf" id="2_gnrce"]
+[ext_resource type="FontFile" uid="uid://52lu7n0suxud" path="res://fonts/Roboto-Bold.ttf" id="3_om3id"]
 
 [sub_resource type="StyleBoxFlat" id="5"]
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)

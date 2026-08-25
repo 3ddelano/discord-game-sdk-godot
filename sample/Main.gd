@@ -16,7 +16,16 @@ func _ready() -> void:
 	if APPLICATION_ID == 0:
 		Store.log_error("APPLICATION_ID is not set in Main.gd")
 		return
-
+	
+	
+	var core = DGSCore.new()
+	core.msg_logged.connect(func (level, msg):
+		print("Discord Log:: %s :: %s", level, msg)
+	)
+	add_child(core)
+	print(core.create_core(CLIENT_ID, 0))
+	
+	return
 	# Setup Discord GameSDK
 	var create_res = DiscordSDK.Core.create(CLIENT_ID)
 	if DiscordSDK.is_error(create_res):

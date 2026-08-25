@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://djdt0ibec8g1k"]
 
-[ext_resource type="Shader" path="res://components/NetworkImage/NetworkImage.gdshader" id="1_vldqe"]
-[ext_resource type="Script" path="res://components/NetworkImage/NetworkImage.gd" id="1_wtwoh"]
-[ext_resource type="Texture2D" uid="uid://cq2ih4q66qngp" path="res://components/NetworkImage/loading-icon.png" id="2_d4pa5"]
-[ext_resource type="Script" path="res://components/NetworkImage/CenteredImage.gd" id="3_t38pq"]
+[ext_resource type="Shader" uid="uid://crnd732675cws" path="res://components/NetworkImage/NetworkImage.gdshader" id="1_vldqe"]
+[ext_resource type="Script" uid="uid://cmaca33htc33q" path="res://components/NetworkImage/NetworkImage.gd" id="1_wtwoh"]
+[ext_resource type="Texture2D" uid="uid://gbo5kmt1ndyj" path="res://components/NetworkImage/loading-icon.png" id="2_d4pa5"]
+[ext_resource type="Script" uid="uid://b5xwflgcayydf" path="res://components/NetworkImage/CenteredImage.gd" id="3_t38pq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_spq28"]
 
@@ -56,8 +56,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a70q3"]
 _data = {
-"RESET": SubResource("1"),
-"rotate": SubResource("2")
+&"RESET": SubResource("1"),
+&"rotate": SubResource("2")
 }
 
 [node name="NetworkImage" type="Panel"]

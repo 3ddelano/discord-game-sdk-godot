@@ -1,23 +1,20 @@
 [gd_scene load_steps=16 format=3 uid="uid://c7i5mvhud882g"]
 
-[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_6ynui"]
+[ext_resource type="FontFile" uid="uid://dmnmqeyec3dax" path="res://fonts/Roboto-Regular.ttf" id="1_6ynui"]
 [ext_resource type="PackedScene" uid="uid://c7a4wvc65f57" path="res://scenes/ActivityView/ActivityView.tscn" id="2"]
-[ext_resource type="Script" path="res://Main.gd" id="3"]
-[ext_resource type="Script" path="res://scripts/ViewManager.gd" id="3_j157n"]
+[ext_resource type="Script" uid="uid://p0pwgyp72suv" path="res://Main.gd" id="3"]
+[ext_resource type="Script" uid="uid://dsjdu6sspjxdv" path="res://scripts/ViewManager.gd" id="3_j157n"]
 [ext_resource type="PackedScene" uid="uid://cl2qvlvdhn2iw" path="res://scenes/LogsView/LogsView.tscn" id="4"]
-[ext_resource type="Texture2D" uid="uid://6vos1pkll5r" path="res://logo.png" id="4_87o37"]
+[ext_resource type="Texture2D" uid="uid://dho3f8gvul7jb" path="res://logo.png" id="4_87o37"]
 [ext_resource type="PackedScene" uid="uid://rjivhq2c1j1w" path="res://scenes/UserView/UserView.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://citje3bq1h0jh" path="res://scenes/OverlayView/OverlayView.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bmd75bv6ub6o6" path="res://scenes/RelationshipsView/RelationshipsView.tscn" id="11"]
-[ext_resource type="Script" path="res://scripts/Version.gd" id="12_on6la"]
-[ext_resource type="Script" path="res://scenes/NotificationsView/NotificationsView.gd" id="14_v0jrb"]
+[ext_resource type="Script" uid="uid://blfleo6ednmd8" path="res://scripts/Version.gd" id="12_on6la"]
+[ext_resource type="Script" uid="uid://cgrqmixqja4ki" path="res://scenes/NotificationsView/NotificationsView.gd" id="14_v0jrb"]
 
 [sub_resource type="FontFile" id="FontFile_y1yfp"]
 fallbacks = Array[Font]([ExtResource("1_6ynui")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0

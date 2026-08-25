@@ -7,9 +7,10 @@ extends VBoxContainer
 var RelationshipCardScene = preload("res://components/RelationshipCard/RelationshipCard.tscn")
 
 func _ready() -> void:
-	DiscordSDK.Relationship.get_instance().refresh.connect(func ():
-		_load_all_btn.pressed.connect(_on_load_all_btn_pressed)
-	)
+	#DiscordSDK.Relationship.get_instance().refresh.connect(func ():
+	#	_load_all_btn.pressed.connect(_on_load_all_btn_pressed)
+	#)
+	pass
 
 
 func _remove_all_cards():

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://citje3bq1h0jh"]
 
-[ext_resource type="Script" path="res://scenes/OverlayView/OverlayView.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="2_hp6xm"]
+[ext_resource type="Script" uid="uid://cfg3pjt7gct6c" path="res://scenes/OverlayView/OverlayView.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://52lu7n0suxud" path="res://fonts/Roboto-Bold.ttf" id="2_hp6xm"]
 [ext_resource type="PackedScene" uid="uid://dr8kkwn42djaf" path="res://components/PrimaryButton/PrimaryButton.tscn" id="5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5l1q"]

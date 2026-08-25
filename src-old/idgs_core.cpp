@@ -1,4 +1,4 @@
-#include "idgs_core.h"
+#include "../src/idgs_core.h"
 
 using namespace godot;
 

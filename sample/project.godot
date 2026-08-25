@@ -12,8 +12,9 @@ config_version=5
 
 config/name="Discord GameSDK Godot 4.x"
 run/main_scene="res://Main.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.5")
 boot_splash/bg_color=Color(0.345098, 0.396078, 0.94902, 1)
+boot_splash/fullsize=false
 boot_splash/image="res://logo.png"
 config/icon="res://logo.png"
 
@@ -21,6 +22,10 @@ config/icon="res://logo.png"
 
 Store="*res://scripts/Store.gd"
 Discord_tick="*res://addons/discord-game-sdk-godot/tick.gd"
+
+[display]
+
+window/dpi/allow_hidpi=false
 
 [editor_plugins]
 

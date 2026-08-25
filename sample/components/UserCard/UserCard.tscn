@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://c8bdr8wq658px"]
 
-[ext_resource type="Script" path="res://components/UserCard/UserCard.gd" id="1_obskx"]
+[ext_resource type="Script" uid="uid://mv0ilcbyfny7" path="res://components/UserCard/UserCard.gd" id="1_obskx"]
 [ext_resource type="PackedScene" uid="uid://djdt0ibec8g1k" path="res://components/NetworkImage/NetworkImage.tscn" id="2_jnnv2"]
-[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="3_obwu3"]
-[ext_resource type="FontFile" uid="uid://bvjo321fa54x8" path="res://fonts/Roboto-Bold.ttf" id="4_08m1x"]
-[ext_resource type="Script" path="res://components/UserCard/IdLabel.gd" id="4_oicnw"]
+[ext_resource type="FontFile" uid="uid://dmnmqeyec3dax" path="res://fonts/Roboto-Regular.ttf" id="3_obwu3"]
+[ext_resource type="FontFile" uid="uid://52lu7n0suxud" path="res://fonts/Roboto-Bold.ttf" id="4_08m1x"]
+[ext_resource type="Script" uid="uid://cvtdutb8sc324" path="res://components/UserCard/IdLabel.gd" id="4_oicnw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77p3p"]
 bg_color = Color(0.137255, 0.141176, 0.156863, 1)

@@ -12,7 +12,7 @@ var _state = States.Loading
 
 
 func _ready() -> void:
-	DiscordSDK.User.get_instance().current_user_update.connect(_on_current_user_update)
+	#DiscordSDK.User.get_instance().current_user_update.connect(_on_current_user_update)
 	set_state(States.Loading)
 
 

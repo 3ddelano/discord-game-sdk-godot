@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bocm5rrlyx8xd"]
 
-[ext_resource type="Script" path="res://components/RelationshipCard/RelationshipCard.gd" id="1_hjvhi"]
-[ext_resource type="FontFile" uid="uid://n3sbnldf8lf4" path="res://fonts/Roboto-Regular.ttf" id="1_uc0ef"]
+[ext_resource type="Script" uid="uid://cpmh41qikvop7" path="res://components/RelationshipCard/RelationshipCard.gd" id="1_hjvhi"]
+[ext_resource type="FontFile" uid="uid://dmnmqeyec3dax" path="res://fonts/Roboto-Regular.ttf" id="1_uc0ef"]
 [ext_resource type="PackedScene" uid="uid://c8bdr8wq658px" path="res://components/UserCard/UserCard.tscn" id="2_0gte5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkxph"]

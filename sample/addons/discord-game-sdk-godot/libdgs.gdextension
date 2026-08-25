@@ -1,19 +1,20 @@
 [configuration]
 
 entry_symbol = "dgs_library_init"
+compatibility_minimum = "4.2"
 
 [libraries]
-linux.x86_64.debug = "res://addons/discord-game-sdk-godot/bin/libdgs.linux.template_debug.dev.x86_64.so"
-linux.x86_64.release = "res://addons/discord-game-sdk-godot/bin/libdgs.linux.template_release.x86_64.so"
-windows.x86_64.debug = "res://addons/discord-game-sdk-godot/bin/libdgs.windows.template_debug.dev.x86_64.dll"
-windows.x86_64.release = "res://addons/discord-game-sdk-godot/bin/libdgs.windows.template_release.x86_64.dll"
-macos.debug = "res://addons/discord-game-sdk-godot/bin/libdgs.macos.template_debug.framework"
-macos.release = "res://addons/discord-game-sdk-godot/bin/libdgs.macos.template_release.framework"
+linux.x86_64.debug = "bin/libdgs.linux.template_debug.dev.x86_64.so"
+linux.x86_64.release = "bin/libdgs.linux.template_release.x86_64.so"
+windows.x86_64.debug = "bin/libdgs.windows.template_debug.dev.x86_64.dll"
+windows.x86_64.release = "bin/libdgs.windows.template_release.x86_64.dll"
+macos.debug = "bin/macos/libdgs.macos.template_debug.framework"
+macos.release = "bin/macos/libdgs.macos.template_release.framework"
 
 [dependencies]
-windows.debug.x86_64 = "res://addons/discord-game-sdk-godot/bin/discord_game_sdk.dll"
-windows.release.x86_64 = "res://addons/discord-game-sdk-godot/bin/discord_game_sdk.dll"
-linux.debug.x86_64 = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.so"
-linux.release.x86_64 = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.so"
-macos.debug = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.dylib"
-macos.release = "res://addons/discord-game-sdk-godot/bin/libdiscord_game_sdk.dylib"
+windows.debug.x86_64 = {"bin/windows/discord_game_sdk.dll": ""}
+windows.release.x86_64 = {"bin/windows/discord_game_sdk.dll": ""}
+linux.debug.x86_64 = {"bin/linux/libdiscord_game_sdk.so": ""}
+linux.release.x86_64 = {"bin/linux/libdiscord_game_sdk.so": ""}
+macos.debug = {"bin/macos/libdgs.macos.template_debug.framework/libdiscord_game_sdk.dylib": ""}
+macos.release = {"bin/macos/libdgs.macos.template_release.framework/libdiscord_game_sdk.dylib": ""}

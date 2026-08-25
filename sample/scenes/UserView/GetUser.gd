@@ -45,7 +45,7 @@ func _on_getuser_cb(res: Dictionary):
 func _ready() -> void:
 	set_state(States.Default)
 	_getuser_btn.pressed.connect(_on_getuser_btn_pressed)
-	DiscordSDK.User.get_instance().get_user_cb.connect(_on_getuser_cb)
+	#DiscordSDK.User.get_instance().get_user_cb.connect(_on_getuser_cb)
 
 
 func set_state(new_state: States):
